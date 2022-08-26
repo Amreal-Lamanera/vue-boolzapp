@@ -171,8 +171,8 @@ const app = new Vue({
     methods: {
         getHour(messages) {
             const date = messages[messages.length - 1].date;
-            console.log(date);
-            console.log(dayjs(date).format('HH:mm'));
+            // console.log(date);
+            // console.log(dayjs(date).format('HH:mm'));
             // let arrDate = date.split(' ');
             // arrDate = arrDate[1].split(':');
             // return arrDate[0] + ':' + arrDate[1]
