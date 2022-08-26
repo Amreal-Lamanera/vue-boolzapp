@@ -129,7 +129,12 @@
                                 <img src="img/IMG_9783.JPEG" alt="My profile pic" class="me-3 profile">
                                 <div>
                                     <span class="d-block">Francesco</span>
-                                    <span class="font_small c_dark-grey">Ultimo accesso</span>
+                                    <span class="font_small c_dark-grey" v-if="!writing && active!= null">
+                                        Ultimo accesso: {{ getLastAcc() }}
+                                    </span>
+                                    <span class="font_small c_dark-grey" v-else-if="writing">
+                                        {{ write}}
+                                    </span>
                                 </div>
                             </div>
 

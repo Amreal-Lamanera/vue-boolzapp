@@ -163,6 +163,44 @@ const contacts = [
             }
         ],
     },
+];
+
+const answers = [
+    'Non ci sono più le mezze stagioni',
+    'Oggi ci sei, domani chissà',
+    'Il tempo vola',
+    'I giovani d’oggi non hanno più rispetto per gli anziani',
+    'La verdura di una volta aveva tutto un altro sapore',
+    'Sono sempre i migliori che se ne vanno',
+    'Non c’è più rispetto per gli anziani',
+    'È tutto un magna-magna',
+    'Una volta i cibi erano più sani',
+    'A tutto c’è rimedio, tranne che alla morte',
+    'Non si finisce mai di imparare',
+    'Non ti regala niente nessuno',
+    'Auguri e figli maschi',
+    'Ormai si passa direttamente dal cappotto alle mezze maniche',
+    'Non esistono solo il bianco e il nero, ma ci sono tante sfumature di grigio',
+    'Qui una volta era tutta campagna',
+    'Al cuor non si comanda',
+    'Nella vita non si può mai sapere',
+    'Quando c’è la salute, c’è tutto',
+    'È la vita',
+    'I supermercati hanno ucciso il piccolo commercio',
+    'D’estate nelle case antiche si sta più freschi',
+    'I soldi non sono tutto nella vita',
+    'Non c’è due senza tre',
+    'Prova a buttare una carta per terra in Svizzera',
+    'Ai tempi nostri ci si divertiva con poco',
+    'Ai posteri l’ardua sentenza',
+    'Se non ti ama non ti merita',
+    'Una volta si poteva lasciare la porta aperta',
+    'Con questo tempo non si sa più come vestirsi',
+    'Non è tanto il caldo quanto l’umidità',
+    'I film più belli li danno sempre e solo la notte',
+    'Il mattone è sempre un buon investimento',
+    'Come si mangia in Italia, non si mangia da nessuna parte',
+    'Qui casca l’asino',
 ]
 
 const app = new Vue({
@@ -176,7 +214,10 @@ const app = new Vue({
         addingContact: false,
         newAvatar: '',
         showMsg: -1,
-        showInfo: false
+        showInfo: false,
+        writing: false,
+        write: 'Online',
+        answers
     },
     computed: {
         getMessages() {
@@ -217,13 +258,21 @@ const app = new Vue({
                 status: 'sent'
             });
 
+            this.writing = true;
             setTimeout(() => {
-                this.contacts[this.active].messages.push({
-                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                    message: 'ok',
-                    status: 'received'
-                });
-            }, 1000);
+                this.write = 'Sta scrivendo...';
+                setTimeout(() => {
+                    this.contacts[this.active].messages.push({
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        message: this.randomMsg(),
+                        status: 'received'
+                    }
+                    );
+                    this.write = 'Online';
+                    this.writing = false;
+                }, 2000);
+            }, 3000)
+
 
             this.newMessage = ''
         },
@@ -289,6 +338,17 @@ const app = new Vue({
         invertInfo(i) {
             this.showMsg = i;
             this.showInfo = !this.showInfo;
+        },
+        getLastAcc() {
+            const contact = this.contacts[this.active];
+            const lastMsg = contact.messages.length - 1;
+            const string = contact.messages[lastMsg].date.split(' ');
+            return string[0] + ' alle ' + string[1];
+        },
+        randomMsg() {
+            const length = this.answers.length;
+            const random = Math.floor(Math.random() * length);
+            return this.answers[random];
         }
     }
 })
