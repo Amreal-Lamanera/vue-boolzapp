@@ -11,7 +11,7 @@ body {
     background: linear-gradient(#009688 10%, #d3dbda 0%);
     background-repeat: no-repeat;
     height: 100vh;
-    padding: 2.5vh 0;
+    padding: 2.5vh 5vh;
 }
 
 .main-container {
@@ -67,6 +67,10 @@ aside {
     flex-direction: column;
 }
 
+nav {
+    height: 100%;
+}
+
 header,
 .search-chat,
 .notifications {
@@ -77,9 +81,11 @@ header,
     background-color: #8edafc;
 }
 
-.contacts-container {
+.contacts-container-wrapper {
     flex-basis: 0;
     flex-grow: 1;
+    max-height: 100%;
+    overflow: auto;
 }
 
 .not__bell {

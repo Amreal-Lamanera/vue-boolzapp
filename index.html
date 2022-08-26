@@ -30,102 +30,110 @@
 
         <div id="app">
 
-            <div class="container-lg main-container row">
-                <aside class="col-4 p-0">
-                    <header class="me bg_grey">
-                        <div class="d-flex justify-content-between align-items-center p-3">
-                            <div class="me__profile d-flex align-items-center">
-                                <img src="img/IMG_9783.JPEG" alt="My profile pic" class="me-1 profile">
-                                <span class="me__name">Francesco</span>
-                            </div>
+            <div class="container-fluid main-container row">
+                <aside class="d-md-block col-md-4 p-0" :class="smartphoneChat ? 'd-none' : 'd-block'">
+                    <nav class="d-flex flex-column">
 
-                            <div class="me__buttons c_grey">
-                                <i class="fa-solid fa-circle-notch pointer"></i>
-                                <i class="fa-solid fa-message px-2 pointer"></i>
-                                <i class="fa-solid fa-ellipsis-vertical pointer"></i>
-                            </div>
-                        </div>
-                    </header>
-
-                    <div class="notifications d-flex p-3 align-items-center">
-
-                        <div
-                            class="not__bell profile bg-white d-flex align-items-center justify-content-center me-2 pointer">
-                            <i class="fa-solid fa-bell-slash"></i>
-                        </div>
-
-                        <div class="not__desc">
-                            <span class="d-block">Ricevi notifiche di nuovi messaggi</span>
-                            <span class="font_small text-decoration-underline pointer">Attiva notifiche
-                                desktop</span>
-                        </div>
-                    </div>
-
-                    <div class="search-chat bg_light-grey p-1 d-flex">
-                        <div class="search_btn bg-white px-4 py-1 pointer" @click="controlSearch">
-                            <i v-if="search" class="fa-solid fa-magnifying-glass c_grey"></i>
-                            <i v-else class="fa-solid fa-arrow-left c_grey"></i>
-                        </div>
-                        <input type="text" class="w-100 font_small" placeholder="Cerca o inizia una nuova chat"
-                            ref="typeBox" v-model="text" @focus="search = false" @blur="controlInput">
-                    </div>
-
-                    <div class="contacts-container overflow-auto h-100">
-                        <template v-for="(contact, index) in contacts">
-
-                            <div v-if="getContactsFiltered.includes(contact)"
-                                class="contacts-card d-flex p-3 align-items-center pointer"
-                                :class="index===active ? 'bg_grey' : ''" @click="moveActive(index)">
-
-                                <img class="profile bg-white me-2" :src="contact.avatar">
-
-                                <div class="msg_wrapper">
-                                    <span class="d-block">
-                                        {{ contact.name}}
-                                    </span>
-                                    <span class="last_msg font_small c_grey">
-                                        {{ getLastMsg(index) }}
-                                    </span>
+                        <header class="me bg_grey">
+                            <div class="d-flex justify-content-between align-items-center p-3">
+                                <div class="me__profile d-flex align-items-center">
+                                    <img src="img/IMG_9783.JPEG" alt="My profile pic" class="me-1 profile">
+                                    <span class="me__name">Francesco</span>
                                 </div>
 
-                                <span class="font_small c_grey align-self-start ms-auto">
-                                    {{ getHour(contact.messages) }}
-                                </span>
-
+                                <div class="me__buttons c_grey">
+                                    <i class="fa-solid fa-circle-notch pointer"></i>
+                                    <i class="fa-solid fa-message px-2 pointer"></i>
+                                    <i class="fa-solid fa-ellipsis-vertical pointer"></i>
+                                </div>
                             </div>
-                        </template>
+                        </header>
 
-                        <div v-if="getContactsFiltered.length === 0"
-                            class="contacts-card d-flex p-3 align-items-center justify-content-center flex-column">
-                            <span class="pt-5 mb-3">Contatto non presente</span>
-                            <div class="border-1 border-dark bg_grey p-3 border pointer" @click="addingContact=true">
-                                Aggiungi
-                                ai contatti</div>
-                        </div>
+                        <div class="notifications d-flex p-3 align-items-center">
 
-                        <div v-if="addingContact"
-                            class="pop-up bg_light-grey p-5 d-flex flex-column justify-content-center align-items-center">
-                            <div>
-                                Nome: <input v-model="text" class="me-5" @keyup.enter="addContact">
-                                Avatar Link: <input v-model="newAvatar" class="mb-5" @keyup.enter="addContact">
+                            <div
+                                class="not__bell profile bg-white d-flex align-items-center justify-content-center me-2 pointer">
+                                <i class="fa-solid fa-bell-slash"></i>
                             </div>
-                            <div class="align-self-center d-flex">
-                                <div class="border-1 border-dark bg_grey p-3 border pointer me-3 btn"
-                                    @click="addContact">
-                                    Salva</div>
-                                <div class="border-1 border-dark bg_grey p-3 border pointer align-self-center btn"
-                                    @click="addingContact=false">
-                                    Annulla</div>
+
+                            <div class="not__desc">
+                                <span class="d-block">Ricevi notifiche di nuovi messaggi</span>
+                                <span class="font_small text-decoration-underline pointer">Attiva notifiche
+                                    desktop</span>
                             </div>
                         </div>
 
-                    </div>
+                        <div class="search-chat bg_light-grey p-1 d-flex">
+                            <div class="search_btn bg-white px-4 py-1 pointer" @click="controlSearch">
+                                <i v-if="search" class="fa-solid fa-magnifying-glass c_grey"></i>
+                                <i v-else class="fa-solid fa-arrow-left c_grey"></i>
+                            </div>
+                            <input type="text" class="w-100 font_small" placeholder="Cerca o inizia una nuova chat"
+                                ref="typeBox" v-model="text" @focus="search = false" @blur="controlInput">
+                        </div>
+                        <div class="contacts-container-wrapper">
+                            <div class="d-flex flex-column">
+                                <template v-for="(contact, index) in contacts">
+
+                                    <div v-if="getContactsFiltered.includes(contact)"
+                                        class="contacts-card d-flex p-3 align-items-center pointer"
+                                        :class="index===active ? 'bg_grey' : ''" @click="moveActive(index)">
+
+                                        <img class="profile bg-white me-2" :src="contact.avatar">
+
+                                        <div class="msg_wrapper">
+                                            <span class="d-block">
+                                                {{ contact.name}}
+                                            </span>
+                                            <span class="last_msg font_small c_grey">
+                                                {{ getLastMsg(index) }}
+                                            </span>
+                                        </div>
+
+                                        <span class="font_small c_grey align-self-start ms-auto">
+                                            {{ getHour(contact.messages) }}
+                                        </span>
+
+                                    </div>
+                            </div>
+                            </template>
+
+                            <div v-if="getContactsFiltered.length === 0"
+                                class="contacts-card d-flex p-3 align-items-center justify-content-center flex-column">
+                                <span class="pt-5 mb-3">Contatto non presente</span>
+                                <div class="border-1 border-dark bg_grey p-3 border pointer"
+                                    @click="addingContact=true">
+                                    Aggiungi
+                                    ai contatti</div>
+                            </div>
+
+                            <div v-if="addingContact"
+                                class="pop-up bg_light-grey p-5 d-flex flex-column justify-content-center align-items-center">
+                                <div>
+                                    Nome: <input v-model="text" class="me-5" @keyup.enter="addContact">
+                                    Avatar Link: <input v-model="newAvatar" class="mb-5" @keyup.enter="addContact">
+                                </div>
+                                <div class="align-self-center d-flex">
+                                    <div class="border-1 border-dark bg_grey p-3 border pointer me-3 btn"
+                                        @click="addContact">
+                                        Salva</div>
+                                    <div class="border-1 border-dark bg_grey p-3 border pointer align-self-center btn"
+                                        @click="addingContact=false">
+                                        Annulla</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </nav>
+
                 </aside>
 
-                <main class="col-8 p-0 d-flex flex-column">
+                <main class="col-12 col-md-8 p-0 d-md-flex flex-column" :class="!smartphoneChat ? 'd-none' : 'd-flex'">
                     <header class="me bg_grey">
                         <div class="d-flex justify-content-between align-items-center p-3">
                             <div class="me__profile d-flex align-items-center">
+                                <i class="fa fa-arrow-left me-3 d-md-none pointer" aria-hidden="true"
+                                    :class="smartphoneChat ? 'd-block' : 'd-none'" @click="smartphoneChat=false"></i>
                                 <img src="img/IMG_9783.JPEG" alt="My profile pic" class="me-3 profile">
                                 <div>
                                     <span class="d-block">Francesco</span>
