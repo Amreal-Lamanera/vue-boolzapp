@@ -183,6 +183,14 @@ main {
     right: 5%;
 }
 
+.deleteOpt {
+    position: absolute;
+    right: 5%;
+    background-color: #FFF;
+    z-index: 1;
+    padding: 2rem;
+}
+
 .chat-input {
     flex-basis: 0;
     padding: 0.5rem 1.5rem;

@@ -174,11 +174,17 @@ const app = new Vue({
         search: true,
         text: '',
         addingContact: false,
-        newAvatar: ''
+        newAvatar: '',
+        openMessages: new Array
     },
     computed: {
         getMessages() {
-            return this.contacts[this.active].messages;
+            this.openMessages = this.contacts[this.active].messages;
+            this.openMessages.forEach(element => {
+                element.showOpt = false;
+            });
+            console.log(this.openMessages);
+            return this.openMessages;
         },
         getContactsFiltered() {
             if (!this.text) return contacts
@@ -262,6 +268,10 @@ const app = new Vue({
                 }
             }
             this.addingContact = false;
+        },
+        changeShow(message) {
+            message.showOpt = true;
+            console.log(message);
         }
     }
 })
