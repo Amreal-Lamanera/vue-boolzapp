@@ -175,9 +175,8 @@ const app = new Vue({
         text: '',
         addingContact: false,
         newAvatar: '',
-        msgShow: -1,
-        msg: '',
-        editingMsg: false
+        showMsg: -1,
+        showInfo: false
     },
     computed: {
         getMessages() {
@@ -266,22 +265,14 @@ const app = new Vue({
             }
             this.addingContact = false;
         },
-        changeShow(i, message) {
-            if (this.msgShow === -1) this.msgShow = i;
-            else {
-                this.msgShow = -1;
+        changeShow(i) {
+            if (this.showMsg === i) {
+                this.showMsg = -1;
             }
-            if (this.editingMsg) {
-                message.message = this.msg;
-                this.editingMsg = false;
-            }
-        },
-        changeMsgOutput(message) {
-            if (this.isDate(message.message)) message.message = this.msg;
             else {
-                this.msg = message.message;
-                message.message = message.date;
-                this.editingMsg = true;
+                // console.log(this.showMsg, i);
+                if (this.showMsg !== i) this.showInfo = false;
+                this.showMsg = i;
             }
         },
         isDate(message) {
@@ -291,9 +282,13 @@ const app = new Vue({
         },
         deleteMsg(i) {
             this.getMessages.splice(i, 1)
-            this.msgShow = -1;
+            this.showMsg = -1;
             this.msg = '';
             this.editingMsg = false;
+        },
+        invertInfo(i) {
+            this.showMsg = i;
+            this.showInfo = !this.showInfo;
         }
     }
 })

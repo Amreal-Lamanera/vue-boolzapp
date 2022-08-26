@@ -187,19 +187,34 @@ main {
     position: absolute;
     right: 5%;
     background-color: #FFF;
-    z-index: 1;
+    z-index: 2;
     box-shadow: 0 0 5px black;
     cursor: pointer;
+}
+
+.index-2 {
+    z-index: 2;
 }
 
 .deleteOpt .info,
 .deleteOpt .delete {
     padding: 2rem;
+    /* z-index: 2; */
 }
 
 .deleteOpt .info:hover,
 .deleteOpt .delete:hover {
     background-color: var(--grey);
+}
+
+.msg-layover {
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
 }
 
 .chat-input {
@@ -222,6 +237,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 5px black;
+    z-index: 1;
 }
 
 /*****************************
