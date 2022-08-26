@@ -222,13 +222,18 @@ const app = new Vue({
             this.search = false;
         },
         controlSearch() {
-            if (this.search === false) {
+            if (!this.search) {
                 this.search = !this.search;
                 this.text = '';
             }
+            else {
+                this.$refs.typeBox.focus();
+            }
         },
         controlInput() {
-            if (this.text === '') this.controlSearch();
+            setTimeout(function () {
+                if (this.text === '') this.search = true;
+            }, 1)
         }
     }
 })
