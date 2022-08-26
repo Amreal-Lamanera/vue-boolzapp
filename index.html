@@ -158,23 +158,25 @@
                         </div>
 
                         <template v-else>
-                            <div class="chat-card" v-for="(message,index) in getMessages" :class="message.status">
+                            <div class="chat-card" v-for="(message, index) in getMessages" :class="message.status">
                                 <span class="msg">
                                     {{ message.message }}
-                                    {{ message.showOpt }}
                                 </span>
                                 <div class="hour c_dark-grey font_small">
                                     <span>
                                         {{ formatHour(message.date)}}
                                     </span>
                                 </div>
-                                <div class="layover" @click="changeShow(message)">
+                                <div class="layover" @click="changeShow(index, message)">
                                     <i class="fa-solid fa-angle-down pointer"></i>
                                 </div>
-                                <div v-if="message.showOpt" class="deleteOpt">
-                                    <div>Message info</div>
-                                    <div>Delete message</div>
-                                </div>
+                                <template v-if="msgShow > -1">
+                                    <div v-if="index === msgShow" class="deleteOpt">
+                                        <div class="border-bottom border-1 info" @click="changeMsgOutput(message)">
+                                            Message info</div>
+                                        <div class="delete" @click="deleteMsg(index)">Delete message</div>
+                                    </div>
+                                </template>
                             </div>
                         </template>
 

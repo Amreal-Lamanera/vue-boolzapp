@@ -188,7 +188,18 @@ main {
     right: 5%;
     background-color: #FFF;
     z-index: 1;
+    box-shadow: 0 0 5px black;
+    cursor: pointer;
+}
+
+.deleteOpt .info,
+.deleteOpt .delete {
     padding: 2rem;
+}
+
+.deleteOpt .info:hover,
+.deleteOpt .delete:hover {
+    background-color: var(--grey);
 }
 
 .chat-input {

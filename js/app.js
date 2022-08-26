@@ -175,16 +175,13 @@ const app = new Vue({
         text: '',
         addingContact: false,
         newAvatar: '',
-        openMessages: new Array
+        msgShow: -1,
+        msg: '',
+        editingMsg: false
     },
     computed: {
         getMessages() {
-            this.openMessages = this.contacts[this.active].messages;
-            this.openMessages.forEach(element => {
-                element.showOpt = false;
-            });
-            console.log(this.openMessages);
-            return this.openMessages;
+            return this.contacts[this.active].messages;
         },
         getContactsFiltered() {
             if (!this.text) return contacts
@@ -269,9 +266,31 @@ const app = new Vue({
             }
             this.addingContact = false;
         },
-        changeShow(message) {
-            message.showOpt = true;
-            console.log(message);
+        changeShow(i, message) {
+            if (this.msgShow === -1) this.msgShow = i;
+            else {
+                this.msgShow = -1;
+            }
+            if (this.editingMsg) {
+                message.message = this.msg;
+                this.editingMsg = false;
+            }
+        },
+        changeMsgOutput(message) {
+            if (this.isDate(message.message)) message.message = this.msg;
+            else {
+                this.msg = message.message;
+                message.message = message.date;
+                this.editingMsg = true;
+            }
+        },
+        isDate(message) {
+            console.log(dayjs(message).isValid());
+            if (dayjs(message).format('DD/MM/YYYY HH:mm:ss') === 'Invalid Date') return false
+            return true
+        },
+        deleteMsg(i) {
+            this.getMessages.splice(i, 1)
         }
     }
 })
