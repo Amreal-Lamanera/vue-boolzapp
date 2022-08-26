@@ -106,12 +106,12 @@
                         <div v-if="addingContact"
                             class="pop-up bg_light-grey p-5 d-flex flex-column justify-content-center align-items-center">
                             <div>
-                                Nome: <input v-model="text" class="me-5">
-                                Avatar Link: <input v-model="newAvatar" class="mb-5">
+                                Nome: <input v-model="text" class="me-5" @keyup.enter="addContact">
+                                Avatar Link: <input v-model="newAvatar" class="mb-5" @keyup.enter="addContact">
                             </div>
                             <div class="align-self-center d-flex">
                                 <div class="border-1 border-dark bg_grey p-3 border pointer me-3 btn"
-                                    @click="addContact()">
+                                    @click="addContact">
                                     Salva</div>
                                 <div class="border-1 border-dark bg_grey p-3 border pointer align-self-center btn"
                                     @click="addingContact=false">
