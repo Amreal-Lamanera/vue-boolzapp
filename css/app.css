@@ -192,29 +192,14 @@ main {
     cursor: pointer;
 }
 
-.index-2 {
-    z-index: 2;
-}
-
 .deleteOpt .info,
 .deleteOpt .delete {
     padding: 2rem;
-    /* z-index: 2; */
 }
 
 .deleteOpt .info:hover,
 .deleteOpt .delete:hover {
     background-color: var(--grey);
-}
-
-.msg-layover {
-    background-color: rgba(0, 0, 0, 0.9);
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 1;
 }
 
 .chat-input {

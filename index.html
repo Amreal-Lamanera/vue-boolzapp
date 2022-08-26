@@ -143,17 +143,6 @@
 
                     <div class="chat-container d-flex flex-column position-relative"
                         :class="active === null ? '' : 'my_p'">
-
-                        <!-- <div class="msg-layover" v-if="showMsg > -1">
-                        </div> -->
-
-                        <!-- <div class="chat-card send">
-                            Ciao
-                        </div>
-
-                        <div class="chat-card received">
-                            Ciao
-                        </div> -->
                         <div v-if="active === null"
                             class="def-img d-flex align-items-center justify-content-center flex-column">
                             <img src="img/def.jpg" alt="">
@@ -178,13 +167,11 @@
                                 <div class="layover" @click="changeShow(index)">
                                     <i class="fa-solid fa-angle-down pointer"></i>
                                 </div>
-                                <!-- <template v-if="showMsg > -1"> -->
                                 <div v-if="index === showMsg" class="deleteOpt">
                                     <div class="border-bottom border-1 info" @click="invertInfo(index)">
                                         Info Message</div>
                                     <div class="delete" @click="deleteMsg(index)">Delete message</div>
                                 </div>
-                                <!-- </template> -->
                             </div>
                         </template>
 
