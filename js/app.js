@@ -291,6 +291,9 @@ const app = new Vue({
         },
         deleteMsg(i) {
             this.getMessages.splice(i, 1)
+            this.msgShow = -1;
+            this.msg = '';
+            this.editingMsg = false;
         }
     }
 })
