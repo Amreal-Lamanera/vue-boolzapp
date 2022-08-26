@@ -71,7 +71,7 @@
 
                         <div v-for="(contact, index) in contacts"
                             class="contacts-card d-flex p-3 align-items-center pointer"
-                            :class="index===active ? 'bg_grey' : ''" @click="active = index">
+                            :class="index===active ? 'bg_grey' : ''" @click="moveActive(index)">
 
                             <img class="profile bg-white me-2" :src="contact.avatar">
 
@@ -135,7 +135,7 @@
                         </div>
                     </header>
 
-                    <div class="chat-container my_p d-flex flex-column">
+                    <div class="chat-container d-flex flex-column" :class="active === null ? '' : 'my_p'">
 
                         <!-- <div class="chat-card send">
                             Ciao
@@ -150,6 +150,12 @@
                             <span class="font_small c_dark-grey">Invia e ricevi messaggi senza mantenere il telefono
                                 connesso a Internet.</span>
                         </div>
+
+                        <template v-else>
+                            <div class="chat-card" v-for="message in getMessages" :class="message.status">
+                                {{ message.message }}
+                            </div>
+                        </template>
 
 
                     </div>

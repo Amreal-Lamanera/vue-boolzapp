@@ -168,6 +168,11 @@ const app = new Vue({
         active: null,
         contacts
     },
+    computed: {
+        getMessages() {
+            return this.contacts[this.active].messages;
+        }
+    },
     methods: {
         getHour(messages) {
             const date = messages[messages.length - 1].date;
@@ -178,5 +183,9 @@ const app = new Vue({
             // return arrDate[0] + ':' + arrDate[1]
             return dayjs(date).format('HH:mm');
         },
+        moveActive(index) {
+            this.active = index;
+        },
+
     }
 })
