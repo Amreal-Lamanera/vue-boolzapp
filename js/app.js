@@ -235,7 +235,7 @@ const app = new Vue({
             setTimeout(() => {
                 if (this.text === '') this.search = true;
                 // console.log(this.search);
-            }, 100)
+            }, 200)
         }
     }
 })
