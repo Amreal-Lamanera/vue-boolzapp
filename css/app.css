@@ -3,7 +3,8 @@
 *****************************/
 
 :root {
-    --light-grey: #eaeaea;
+    --grey: #eaeaea;
+    --light-grey: #f1f1f1;
 }
 
 body {
@@ -20,22 +21,51 @@ body {
     margin: 0 auto;
 }
 
-/*****************************
-    ASIDE
-*****************************/
-.me {
-    background-color: var(--light-grey);
-}
-
-.me__profile img {
-    width: 25px;
+.profile {
+    width: 3rem;
     aspect-ratio: 1;
     border-radius: 100%;
 }
 
-.me__name,
-.me__buttons {
+.font_small {
     font-size: 0.75rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.c_grey {
+    color: #b1b1b1;
+}
+
+.bg_grey {
+    background-color: var(--grey);
+}
+
+.bg_light-grey {
+    background-color: var(--light-grey);
+}
+
+/*****************************
+    ASIDE
+*****************************/
+
+.notifications {
+    background-color: #8edafc;
+}
+
+.not__bell {
+    color: #8edafc;
+}
+
+.notifications .font_small {
+    color: #38768e;
+}
+
+.search_btn,
+.search-chat input {
+    border: 1px solid var(--grey);
 }
 
 /*****************************
