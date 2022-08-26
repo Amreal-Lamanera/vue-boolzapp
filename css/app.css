@@ -1,0 +1,29 @@
+body {
+    background: linear-gradient(#009688 10%, #d3dbda 0%);
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding: 2.5vh 0;
+}
+
+.main-container {
+    height: 95vh;
+    background: #FFF;
+    padding: 0;
+    margin: 0 auto;
+}
+
+/*****************************
+    DEBUG 
+*****************************/
+
+.debug .main-container {
+    border: 1px solid black;
+}
+
+.debug .col-4 {
+    background-color: yellow;
+}
+
+.debug .col-8 {
+    background-color: blue;
+}

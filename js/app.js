@@ -1,7 +1,7 @@
 contacts: [
     {
         name: 'Michele',
-        avatar: '_1',
+        avatar: 'https://i.pravatar.cc/50?img=1',
         visible: true,
         messages: [
             {
@@ -23,7 +23,7 @@ contacts: [
     },
     {
         name: 'Fabio',
-        avatar: '_2',
+        avatar: 'https://i.pravatar.cc/50?img=2',
         visible: true,
         messages: [
             {
@@ -45,7 +45,7 @@ contacts: [
     },
     {
         name: 'Samuele',
-        avatar: '_3',
+        avatar: 'https://i.pravatar.cc/50?img=3',
         visible: true,
         messages: [
             {
@@ -67,7 +67,7 @@ contacts: [
     },
     {
         name: 'Alessandro B.',
-        avatar: '_4',
+        avatar: 'https://i.pravatar.cc/50?img=4',
         visible: true,
         messages: [
             {
@@ -84,7 +84,7 @@ contacts: [
     },
     {
         name: 'Alessandro L.',
-        avatar: '_5',
+        avatar: 'https://i.pravatar.cc/50?img=5',
         visible: true,
         messages: [
             {
@@ -101,7 +101,7 @@ contacts: [
     },
     {
         name: 'Claudia',
-        avatar: '_6',
+        avatar: 'https://i.pravatar.cc/50?img=6',
         visible: true,
         messages: [
             {
@@ -123,7 +123,7 @@ contacts: [
     },
     {
         name: 'Federico',
-        avatar: '_7',
+        avatar: 'https://i.pravatar.cc/50?img=7',
         visible: true,
         messages: [
             {
@@ -140,7 +140,7 @@ contacts: [
     },
     {
         name: 'Davide',
-        avatar: '_8',
+        avatar: 'https://i.pravatar.cc/50?img=8',
         visible: true,
         messages: [
             {
@@ -161,3 +161,7 @@ contacts: [
         ],
     }
 ]
+
+const app = new Vue({
+    el: '#app'
+})
