@@ -172,7 +172,9 @@ const app = new Vue({
         contacts,
         newMessage: '',
         search: true,
-        text: ''
+        text: '',
+        addingContact: false,
+        newAvatar: ''
     },
     computed: {
         getMessages() {
@@ -180,17 +182,20 @@ const app = new Vue({
         },
         getContactsFiltered() {
             if (!this.text) return contacts
-            return this.contacts.filter((el) => {
+            const contactFiltered = this.contacts.filter((el) => {
                 const name = el.name.toUpperCase();
                 const text = this.text.toUpperCase();
-                console.log(name, this.text);
                 // console.log(name.includes(this.text));
                 return name.includes(text);
             })
+            console.log(contactFiltered);
+            return contactFiltered;
         }
     },
     methods: {
         getHour(messages) {
+            const last = messages.length - 1;
+            if (last < 0) return;
             let date = messages[messages.length - 1].date;
             return dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('HH:mm');
         },
@@ -219,6 +224,7 @@ const app = new Vue({
         },
         getLastMsg(i) {
             const last = this.contacts[i].messages.length - 1;
+            if (last < 0) return;
             return this.contacts[i].messages[last].message;
         },
         resetInput() {
@@ -239,6 +245,20 @@ const app = new Vue({
                 if (this.text === '') this.search = true;
                 // console.log(this.search);
             }, 200)
+        },
+        addContact() {
+            const newContact = new Object;
+            if (this.text === '') alert('Nome mancante')
+            else {
+                newContact.name = this.text;
+                if (this.newAvatar === '') alert('Avatar assente')
+                else {
+                    newContact.avatar = this.newAvatar;
+                    newContact.messages = new Array;
+                    this.contacts.push(newContact);
+                }
+            }
+            this.addingContact = false;
         }
     }
 })

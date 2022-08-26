@@ -51,6 +51,12 @@ body {
     background-color: var(--light-grey);
 }
 
+.btn {
+    border-radius: 0.5rem;
+    background-color: rgb(54, 54, 54);
+    color: #FFF;
+}
+
 /*****************************
     ASIDE
 *****************************/
@@ -155,6 +161,16 @@ main {
     flex-grow: 1;
     margin: 0 1.5rem;
     border-radius: 0.5rem;
+}
+
+.pop-up {
+    position: absolute;
+    width: 50vw;
+    height: 50vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px black;
 }
 
 /*****************************
