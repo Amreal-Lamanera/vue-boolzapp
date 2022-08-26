@@ -93,11 +93,23 @@ main {
 }
 
 .chat-container {
-    padding: 2rem 1rem 1rem 2.5rem;
     overflow: auto;
     height: calc(100% - 200px);
     flex-basis: 0;
     flex-grow: 1;
+}
+
+.chat-container.my_p {
+    /* padding: 2rem 1rem 1rem 2.5rem; */
+}
+
+.def-img {
+    background-color: #FFF;
+    height: 100%;
+}
+
+.def-img img {
+    width: 50%;
 }
 
 .chat-card {
