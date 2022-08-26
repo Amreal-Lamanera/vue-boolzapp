@@ -72,7 +72,7 @@
 
                     <div class="contacts-container">
 
-                        <div v-for="(contact, index) in contacts"
+                        <div v-for="(contact, index) in getContactsFiltered"
                             class="contacts-card d-flex p-3 align-items-center pointer"
                             :class="index===active ? 'bg_grey' : ''" @click="moveActive(index)">
 

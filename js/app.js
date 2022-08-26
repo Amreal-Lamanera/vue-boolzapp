@@ -177,18 +177,21 @@ const app = new Vue({
     computed: {
         getMessages() {
             return this.contacts[this.active].messages;
+        },
+        getContactsFiltered() {
+            if (!this.text) return contacts
+            return this.contacts.filter((el) => {
+                const name = el.name.toUpperCase();
+                const text = this.text.toUpperCase();
+                console.log(name, this.text);
+                // console.log(name.includes(this.text));
+                return name.includes(text);
+            })
         }
     },
     methods: {
         getHour(messages) {
             let date = messages[messages.length - 1].date;
-            // console.log(date);
-            // console.log(dayjs(date).format('HH:mm'));
-            // let arrDate = date.split(' ');
-            // arrDate = arrDate[1].split(':');
-            // return arrDate[0] + ':' + arrDate[1]
-            // console.log(dayjs(date, 'DD/MM/YYYY HH:mm:ss', true));
-
             return dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('HH:mm');
         },
         moveActive(index) {
