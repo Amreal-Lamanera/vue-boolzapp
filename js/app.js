@@ -1,6 +1,6 @@
-contacts: [
+const contacts = [
     {
-        name: 'Michele',
+        name: 'Michela',
         avatar: 'https://i.pravatar.cc/50?img=1',
         visible: true,
         messages: [
@@ -163,5 +163,20 @@ contacts: [
 ]
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        active: null,
+        contacts
+    },
+    methods: {
+        getHour(messages) {
+            const date = messages[messages.length - 1].date;
+            console.log(date);
+            console.log(dayjs(date).format('HH:mm'));
+            // let arrDate = date.split(' ');
+            // arrDate = arrDate[1].split(':');
+            // return arrDate[0] + ':' + arrDate[1]
+            return dayjs(date).format('HH:mm');
+        },
+    }
 })

@@ -17,6 +17,9 @@
         <!-- VUE -->
         <script src='https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js'></script>
 
+        <!-- DAYJS -->
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
         <title>My Title</title>
 
     </head>
@@ -65,7 +68,26 @@
                     </div>
 
                     <div class="contacts-container">
-                        <div class="contacts-card d-flex p-3 align-items-center pointer bg_grey">
+
+                        <div v-for="(contact, index) in contacts"
+                            class="contacts-card d-flex p-3 align-items-center pointer"
+                            :class="index===active ? 'bg_grey' : ''">
+
+                            <img class="profile bg-white me-2" :src="contact.avatar">
+
+                            <div class="">
+                                <span class="d-block">
+                                    {{ contact.name}}
+                                </span>
+                                <span class="font_small c_grey">Ultimo messaggio inviato</span>
+                            </div>
+
+                            <span class="font_small c_grey align-self-start ms-auto">
+                                {{ getHour(contact.messages) }}
+                            </span>
+                        </div>
+
+                        <!-- <div class="contacts-card d-flex p-3 align-items-center pointer bg_grey">
 
                             <img class="profile bg-white me-2" src="https://i.pravatar.cc/50?img=1" alt="">
 
@@ -90,7 +112,7 @@
 
                             <span class="font_small c_grey align-self-start ms-auto">10:05</span>
 
-                        </div>
+                        </div> -->
                     </div>
                 </aside>
 
