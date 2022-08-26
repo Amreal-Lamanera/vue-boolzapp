@@ -21,13 +21,13 @@
 
     </head>
 
-    <body class="debug">
+    <body class="">
 
         <div id="app">
 
             <div class="container-lg main-container row">
                 <aside class="col-4 p-0">
-                    <div class="me bg_grey">
+                    <header class="me bg_grey">
                         <div class="d-flex justify-content-between align-items-center p-3">
                             <div class="me__profile d-flex align-items-center">
                                 <img src="img/IMG_9783.JPEG" alt="My profile pic" class="me-1 profile">
@@ -40,7 +40,7 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </div>
-                    </div>
+                    </header>
 
                     <div class="notifications d-flex p-3 align-items-center">
 
@@ -64,8 +64,8 @@
                         <input type="text" class="w-100 font_small" placeholder="Cerca o inizia una nuova chat">
                     </div>
 
-                    <div class="chat-container">
-                        <div class="chat-card d-flex p-3 align-items-center pointer bg_grey">
+                    <div class="contacts-container">
+                        <div class="contacts-card d-flex p-3 align-items-center pointer bg_grey">
 
                             <img class="profile bg-white me-2" src="https://i.pravatar.cc/50?img=1" alt="">
 
@@ -89,7 +89,44 @@
                     </div>
                 </aside>
 
-                <main class="col-8">
+                <main class="col-8 p-0 d-flex flex-column">
+                    <header class="me bg_grey">
+                        <div class="d-flex justify-content-between align-items-center p-3">
+                            <div class="me__profile d-flex align-items-center">
+                                <img src="img/IMG_9783.JPEG" alt="My profile pic" class="me-3 profile">
+                                <div>
+                                    <span class="d-block">Francesco</span>
+                                    <span class="font_small c_dark-grey">Ultimo accesso</span>
+                                </div>
+                            </div>
+
+                            <div class="me__buttons c_grey">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <i class="fa-solid fa-paperclip px-2"></i>
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class="chat-container p-y5 d-flex flex-column">
+
+                        <div class="chat-card send">
+                            Ciao
+                        </div>
+
+                        <div class="chat-card received">
+                            Ciao
+                        </div>
+
+                    </div>
+
+                    <div class="chat-input">
+                        <div class="d-flex align-items-center c_dark-grey">
+                            <i class="fa-regular fa-face-smile"></i>
+                            <input type="text" class="font_small border-0 p-3" placeholder="Scrivi un messaggio">
+                            <i class="fa fa-microphone" aria-hidden="true"></i>
+                        </div>
+                    </div>
 
                 </main>
             </div>
