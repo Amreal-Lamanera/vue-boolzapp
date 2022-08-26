@@ -76,6 +76,18 @@ aside {
     border: 1px solid var(--grey);
 }
 
+.msg_wrapper {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.last_msg {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /*****************************
     MAIN
 *****************************/
@@ -113,11 +125,19 @@ main {
 }
 
 .chat-card {
-    width: 40%;
+    max-width: 40%;
     background-color: #FFF;
     border-radius: 0.5rem;
     padding: 1rem;
     margin-bottom: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.msg {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chat-card.sent {

@@ -194,14 +194,27 @@ const app = new Vue({
         },
         addMessage() {
             this.newMessage = this.newMessage.trim();
-            if (!this.newMessage) return
+            if (!this.newMessage || this.active === null) return
+
             this.contacts[this.active].messages.push({
                 date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                 message: this.newMessage,
                 status: 'sent'
-            })
-            console.log(this.contacts[this.active].messages[(this.contacts[this.active].messages.length) - 1]);
+            });
+
+            setTimeout(() => {
+                this.contacts[this.active].messages.push({
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    message: 'ok',
+                    status: 'received'
+                });
+            }, 1000);
+
             this.newMessage = ''
+        },
+        getLastMsg(i) {
+            const last = this.contacts[i].messages.length - 1;
+            return this.contacts[i].messages[last].message;
         }
     }
 })

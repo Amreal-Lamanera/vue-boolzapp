@@ -77,11 +77,11 @@
 
                             <img class="profile bg-white me-2" :src="contact.avatar">
 
-                            <div class="">
+                            <div class="msg_wrapper">
                                 <span class="d-block">
                                     {{ contact.name}}
                                 </span>
-                                <span class="font_small c_grey">Ultimo messaggio inviato</span>
+                                <span class="last_msg font_small c_grey">{{ getLastMsg(index) }}</span>
                             </div>
 
                             <span class="font_small c_grey align-self-start ms-auto">
@@ -155,7 +155,9 @@
 
                         <template v-else>
                             <div class="chat-card" v-for="message in getMessages" :class="message.status">
-                                {{ message.message }}
+                                <span class="msg">
+                                    {{ message.message }}
+                                </span>
                             </div>
                         </template>
 
