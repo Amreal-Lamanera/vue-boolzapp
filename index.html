@@ -59,14 +59,15 @@
                             <span class="font_small text-decoration-underline pointer">Attiva notifiche
                                 desktop</span>
                         </div>
-
                     </div>
 
                     <div class="search-chat bg_light-grey p-1 d-flex">
-                        <div class="search_btn bg-white px-4 py-1 pointer">
-                            <i class="fa-solid fa-magnifying-glass c_grey"></i>
+                        <div class="search_btn bg-white px-4 py-1 pointer" @click="controlSearch">
+                            <i v-if="search" class="fa-solid fa-magnifying-glass c_grey"></i>
+                            <i v-else class="fa-solid fa-arrow-left c_grey"></i>
                         </div>
-                        <input type="text" class="w-100 font_small" placeholder="Cerca o inizia una nuova chat">
+                        <input type="text" class="w-100 font_small" placeholder="Cerca o inizia una nuova chat"
+                            v-model="text" @focus="search = false" @blur="controlInput()">
                     </div>
 
                     <div class="contacts-container">
@@ -89,32 +90,6 @@
                             </span>
                         </div>
 
-                        <!-- <div class="contacts-card d-flex p-3 align-items-center pointer bg_grey">
-
-                            <img class="profile bg-white me-2" src="https://i.pravatar.cc/50?img=1" alt="">
-
-                            <div class="">
-                                <span class="d-block">Giovanna</span>
-                                <span class="font_small c_grey">Ultimo messaggio inviato</span>
-                            </div>
-
-                            <span class="font_small c_grey align-self-start ms-auto">09:15</span>
-
-
-                        </div>
-
-                        <div class="contacts-card d-flex p-3 align-items-center pointer">
-
-                            <img class="profile bg-white me-2" src="https://i.pravatar.cc/50?img=2" alt="">
-
-                            <div class="">
-                                <span class="d-block">Paola</span>
-                                <span class="font_small c_grey">Ultimo messaggio inviato</span>
-                            </div>
-
-                            <span class="font_small c_grey align-self-start ms-auto">10:05</span>
-
-                        </div> -->
                     </div>
                 </aside>
 

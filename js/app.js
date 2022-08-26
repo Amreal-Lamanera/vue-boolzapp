@@ -170,7 +170,9 @@ const app = new Vue({
     data: {
         active: null,
         contacts,
-        newMessage: ''
+        newMessage: '',
+        search: true,
+        text: ''
     },
     computed: {
         getMessages() {
@@ -215,6 +217,18 @@ const app = new Vue({
         getLastMsg(i) {
             const last = this.contacts[i].messages.length - 1;
             return this.contacts[i].messages[last].message;
+        },
+        resetInput() {
+            this.search = false;
+        },
+        controlSearch() {
+            if (this.search === false) {
+                this.search = !this.search;
+                this.text = '';
+            }
+        },
+        controlInput() {
+            if (this.text === '') this.controlSearch();
         }
     }
 })
