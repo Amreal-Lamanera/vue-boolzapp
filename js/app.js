@@ -197,6 +197,9 @@ const app = new Vue({
             const last = messages.length - 1;
             if (last < 0) return;
             let date = messages[messages.length - 1].date;
+            return this.formatHour(date);
+        },
+        formatHour(date) {
             return dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('HH:mm');
         },
         moveActive(index) {

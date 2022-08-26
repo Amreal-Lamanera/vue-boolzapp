@@ -147,14 +147,40 @@ main {
     max-width: 40%;
     background-color: #FFF;
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     margin-bottom: 1rem;
     overflow-wrap: break-word;
+    position: relative;
+}
+
+.chat-card .layover {
+    display: none;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.chat-card.sent .layover {
+    background-color: #d5f9ba;
+}
+
+.chat-card.received .layover {
+    background-color: #FFF;
+}
+
+.chat-card:hover .layover {
+    display: block;
 }
 
 .chat-card.sent {
     background-color: #d5f9ba;
     align-self: flex-end;
+}
+
+.hour {
+    position: absolute;
+    right: 5%;
 }
 
 .chat-input {
