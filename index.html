@@ -202,7 +202,8 @@
                             <i class="fa-regular fa-face-smile"></i>
                             <input type="text" class="font_small border-0 p-3" placeholder="Scrivi un messaggio"
                                 v-model="newMessage" @keyup.enter="addMessage">
-                            <i class="fa fa-microphone" aria-hidden="true"></i>
+                            <i v-if="newMessage === ''" class="fa fa-microphone" aria-hidden="true"></i>
+                            <i v-else class="fa-solid fa-paper-plane" aria-hidden="true" @click="addMessage"></i>
                         </div>
                     </div>
 
