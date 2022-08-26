@@ -70,7 +70,7 @@
                             ref="typeBox" v-model="text" @focus="search = false" @blur="controlInput">
                     </div>
 
-                    <div class="contacts-container">
+                    <div class="contacts-container overflow-auto h-100">
                         <template v-for="(contact, index) in contacts">
 
                             <div v-if="getContactsFiltered.includes(contact)"
@@ -94,7 +94,6 @@
 
                             </div>
                         </template>
-
 
                         <div v-if="getContactsFiltered.length === 0"
                             class="contacts-card d-flex p-3 align-items-center justify-content-center flex-column">

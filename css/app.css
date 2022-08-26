@@ -63,10 +63,23 @@ body {
 
 aside {
     border-right: 1px solid rgb(219, 216, 216);
+    display: flex;
+    flex-direction: column;
+}
+
+header,
+.search-chat,
+.notifications {
+    flex-basis: 0;
 }
 
 .notifications {
     background-color: #8edafc;
+}
+
+.contacts-container {
+    flex-basis: 0;
+    flex-grow: 1;
 }
 
 .not__bell {
@@ -136,14 +149,7 @@ main {
     border-radius: 0.5rem;
     padding: 1rem;
     margin-bottom: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-}
-
-.msg {
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-wrap: break-word;
 }
 
 .chat-card.sent {
