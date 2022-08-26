@@ -18,7 +18,9 @@
         <script src='https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js'></script>
 
         <!-- DAYJS -->
-        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+        <script src="https://unpkg.com/dayjs@1.8.20/dayjs.min.js"></script>
+        <script src="https://unpkg.com/dayjs@1.8.20/plugin/customParseFormat.js"></script>
+
 
         <title>My Title</title>
 
@@ -163,7 +165,8 @@
                     <div class="chat-input">
                         <div class="d-flex align-items-center c_dark-grey">
                             <i class="fa-regular fa-face-smile"></i>
-                            <input type="text" class="font_small border-0 p-3" placeholder="Scrivi un messaggio">
+                            <input type="text" class="font_small border-0 p-3" placeholder="Scrivi un messaggio"
+                                v-model="newMessage" @keyup.enter="addMessage">
                             <i class="fa fa-microphone" aria-hidden="true"></i>
                         </div>
                     </div>

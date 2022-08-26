@@ -1,3 +1,6 @@
+
+dayjs.extend(window.dayjs_plugin_customParseFormat);
+
 const contacts = [
     {
         name: 'Michela',
@@ -166,7 +169,8 @@ const app = new Vue({
     el: '#app',
     data: {
         active: null,
-        contacts
+        contacts,
+        newMessage: ''
     },
     computed: {
         getMessages() {
@@ -175,18 +179,29 @@ const app = new Vue({
     },
     methods: {
         getHour(messages) {
-            const date = messages[messages.length - 1].date;
+            let date = messages[messages.length - 1].date;
             // console.log(date);
             // console.log(dayjs(date).format('HH:mm'));
             // let arrDate = date.split(' ');
             // arrDate = arrDate[1].split(':');
             // return arrDate[0] + ':' + arrDate[1]
-            console.log(dayjs(date, 'DD/MM/YYYY hh:mm:ss', true));
-            return dayjs(date).format('HH:mm');
+            // console.log(dayjs(date, 'DD/MM/YYYY HH:mm:ss', true));
+
+            return dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('HH:mm');
         },
         moveActive(index) {
             this.active = index;
         },
-
+        addMessage() {
+            this.newMessage = this.newMessage.trim();
+            if (!this.newMessage) return
+            this.contacts[this.active].messages.push({
+                date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                message: this.newMessage,
+                status: 'sent'
+            })
+            console.log(this.contacts[this.active].messages[(this.contacts[this.active].messages.length) - 1]);
+            this.newMessage = ''
+        }
     }
 })
