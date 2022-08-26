@@ -1,3 +1,11 @@
+/*****************************
+    GENERAL
+*****************************/
+
+:root {
+    --light-grey: #eaeaea;
+}
+
 body {
     background: linear-gradient(#009688 10%, #d3dbda 0%);
     background-repeat: no-repeat;
@@ -13,6 +21,24 @@ body {
 }
 
 /*****************************
+    ASIDE
+*****************************/
+.me {
+    background-color: var(--light-grey);
+}
+
+.me__profile img {
+    width: 25px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+}
+
+.me__name,
+.me__buttons {
+    font-size: 0.75rem;
+}
+
+/*****************************
     DEBUG 
 *****************************/
 
@@ -20,9 +46,9 @@ body {
     border: 1px solid black;
 }
 
-.debug .col-4 {
+/* .debug .col-4 {
     background-color: yellow;
-}
+} */
 
 .debug .col-8 {
     background-color: blue;
