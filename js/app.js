@@ -181,6 +181,7 @@ const app = new Vue({
             // let arrDate = date.split(' ');
             // arrDate = arrDate[1].split(':');
             // return arrDate[0] + ':' + arrDate[1]
+            console.log(dayjs(date, 'DD/MM/YYYY hh:mm:ss', true));
             return dayjs(date).format('HH:mm');
         },
         moveActive(index) {
