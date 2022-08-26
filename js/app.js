@@ -223,7 +223,7 @@ const app = new Vue({
         },
         controlSearch() {
             if (!this.search) {
-                this.search = !this.search;
+                this.search = true;
                 this.text = '';
             }
             else {
@@ -231,9 +231,11 @@ const app = new Vue({
             }
         },
         controlInput() {
-            setTimeout(function () {
+            // console.log('blur');
+            setTimeout(() => {
                 if (this.text === '') this.search = true;
-            }, 1)
+                // console.log(this.search);
+            }, 100)
         }
     }
 })
