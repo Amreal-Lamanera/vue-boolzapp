@@ -468,6 +468,13 @@ const app = new Vue({
         *********************************/
         getName() {
             return this.contacts[this.active].name;
+        },
+
+        /**********************************
+            controlla se la chat è nuova
+        *********************************/
+        isNew() {
+            return !this.getMessages.length;
         }
     }
 })

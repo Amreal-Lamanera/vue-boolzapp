@@ -229,13 +229,30 @@ main {
 
 .pop-up {
     position: absolute;
-    width: 50vw;
-    height: 50vh;
+    /* width: 90vw;
+    height: 90vh; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 5px black;
     z-index: 1;
+    padding: 3rem;
+    border-radius: 1rem;
+}
+
+.input-container {
+    display: contents;
+}
+
+@media (min-width: 1400px) {
+    .input-container {
+        display: block;
+    }
+
+    .pop-up {
+        width: 50vw;
+        height: 50vh;
+    }
 }
 
 /*****************************

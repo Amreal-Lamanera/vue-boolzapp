@@ -114,11 +114,23 @@
                             </div>
 
                             <div v-if="addingContact"
-                                class="pop-up bg_light-grey p-5 d-flex flex-column justify-content-center align-items-center">
-                                <div>
-                                    Nome: <input v-model="text" class="me-5" @keyup.enter="addContact">
-                                    Avatar Link: <input v-model="newAvatar" class="mb-5" @keyup.enter="addContact">
+                                class="pop-up bg_light-grey d-flex flex-column justify-content-center align-items-center">
+                                <div class="input-container">
+                                    <span>
+                                        Nome:
+                                    </span>
+
+                                    <input v-model="text" class="me-xxl-3 me-0" @keyup.enter="addContact">
+
+                                    <span>
+                                        Avatar Link:
+                                    </span>
+
+                                    <input v-model="newAvatar" class="mb-5" @keyup.enter="addContact">
                                 </div>
+
+
+
                                 <div class="align-self-center d-flex">
                                     <div class="border-1 border-dark bg_grey p-3 border pointer me-3 btn"
                                         @click="addContact">
@@ -152,7 +164,8 @@
                                             </span>
                                         </div>
 
-                                        <span class="font_small c_dark-grey" v-if="!writing && active!= null">
+                                        <span class="font_small c_dark-grey"
+                                            v-if="!writing && active!= null && !isNew()">
                                             Ultimo accesso: {{ getLastAcc() }}
                                         </span>
                                         <span class="font_small c_dark-grey" v-else-if="writing">
