@@ -251,7 +251,6 @@ const app = new Vue({
                 const text = this.text.toUpperCase();
                 return name.includes(text);
             })
-            console.log(contactFiltered);
             return contactFiltered;
         }
     },
