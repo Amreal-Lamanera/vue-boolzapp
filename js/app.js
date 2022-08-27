@@ -1,6 +1,8 @@
-
 dayjs.extend(window.dayjs_plugin_customParseFormat);
 
+/**********************************
+   array dei contatti
+*********************************/
 const contacts = [
     {
         name: 'Michela',
@@ -165,6 +167,9 @@ const contacts = [
     },
 ];
 
+/**********************************
+   array delle risposte casuali
+*********************************/
 const answers = [
     'Non ci sono più le mezze stagioni',
     'Oggi ci sei, domani chissà',
@@ -205,6 +210,9 @@ const answers = [
 
 const app = new Vue({
     el: '#app',
+    /**********************************
+        DATA
+     *********************************/
     data: {
         smartphoneChat: false,
         active: null,
@@ -220,36 +228,68 @@ const app = new Vue({
         write: 'Online',
         answers
     },
+    /**********************************
+        COMPUTED
+     *********************************/
     computed: {
+        /**********************************
+            ritorna l'array dei messaggi 
+            della chat attivo
+        *********************************/
         getMessages() {
             this.smartphoneChat = true;
             return this.contacts[this.active].messages;
         },
+        /**********************************
+            ritorna l'array dei messaggi
+            contenente l'input text
+        *********************************/
         getContactsFiltered() {
             if (!this.text) return contacts
             const contactFiltered = this.contacts.filter((el) => {
                 const name = el.name.toUpperCase();
                 const text = this.text.toUpperCase();
-                // console.log(name.includes(this.text));
                 return name.includes(text);
             })
             console.log(contactFiltered);
             return contactFiltered;
         }
     },
+    /**********************************
+        METHODS
+     *********************************/
     methods: {
+        /**********************************
+            ritorna l'ora come stringa
+            'HH:mm' dell'ultimo messaggio
+        *********************************/
         getHour(messages) {
             const last = messages.length - 1;
             if (last < 0) return;
             let date = messages[messages.length - 1].date;
             return this.formatHour(date);
         },
+
+        /**********************************
+            prende una data e ritorna 
+            l'ora come stringa 'HH:mm'
+        *********************************/
         formatHour(date) {
             return dayjs(date, 'DD/MM/YYYY HH:mm:ss').format('HH:mm');
         },
+
+        /**********************************
+            imposta l'indice della chat
+            attiva
+        *********************************/
         moveActive(index) {
             this.active = index;
         },
+
+        /**********************************
+            aggiunge il messaggio inviato
+            alla chat e genera una risposta
+        *********************************/
         addMessage() {
             this.newMessage = this.newMessage.trim();
             if (!this.newMessage || this.active === null) return
@@ -278,14 +318,31 @@ const app = new Vue({
 
             this.newMessage = ''
         },
+
+        /**********************************
+            dato un indice i ritorna 
+            l'ultimo messaggio del contatto
+            in posizione i
+        *********************************/
         getLastMsg(i) {
             const last = this.contacts[i].messages.length - 1;
             if (last < 0) return;
             return this.contacts[i].messages[last].message;
         },
+
+        /**********************************
+            resetta la variabile search
+        *********************************/
         resetInput() {
             this.search = false;
         },
+
+        /**********************************
+            se search non era attivo
+            lo attiva e resetta il testo
+            altrimenti passa il focus
+            sull'input text
+        *********************************/
         controlSearch() {
             if (!this.search) {
                 this.search = true;
@@ -295,13 +352,23 @@ const app = new Vue({
                 this.$refs.typeBox.focus();
             }
         },
+
+        /**********************************
+            controlla che l'input text
+            sia vuoto e attiva search
+            con un ritardo di 200ms
+            altrimenti causerebbe un bug
+        *********************************/
         controlInput() {
-            // console.log('blur');
             setTimeout(() => {
                 if (this.text === '') this.search = true;
-                // console.log(this.search);
             }, 200)
         },
+
+        /**********************************
+            aggiunge un nuovo contatto ai
+            messaggi
+        *********************************/
         addContact() {
             const newContact = new Object;
             if (this.text === '') alert('Nome mancante')
@@ -316,47 +383,90 @@ const app = new Vue({
             }
             this.addingContact = false;
         },
+
+        /**********************************
+            al click sulla spunta del
+            messaggio SE il messaggio sele-
+            zionato come da mostrare è lo
+            stesso che sto analizzando
+            chiudo il layover
+            ALTRIMENTI SE
+            ho cliccato con uno diverso
+            nascondo il layover
+            in ogni caso imposto come
+            messaggio da visualizzare quello
+            che ho cliccato
+        *********************************/
         changeShow(i) {
             if (this.showMsg === i) {
                 this.showMsg = -1;
             }
             else {
-                // console.log(this.showMsg, i);
                 if (this.showMsg !== i) this.showInfo = false;
                 this.showMsg = i;
             }
         },
-        isDate(message) {
-            console.log(dayjs(message).isValid());
-            if (dayjs(message).format('DD/MM/YYYY HH:mm:ss') === 'Invalid Date') return false
-            return true
+
+        /**********************************
+            nascondo/mostro il layout
+            e imposto il messaggio da
+            mostrare all'indice i passato
+            come parametro
+        *********************************/
+        invertInfo(i) {
+            this.showMsg = i;
+            this.showInfo = !this.showInfo;
         },
+
+        /**********************************
+            funzione che dato un indice i
+            elimina il messaggio in
+            posizione i dalla chat attiva
+        *********************************/
         deleteMsg(i) {
             this.getMessages.splice(i, 1)
             this.showMsg = -1;
             this.msg = '';
             this.editingMsg = false;
         },
-        invertInfo(i) {
-            this.showMsg = i;
-            this.showInfo = !this.showInfo;
-        },
+
+        /**********************************
+            ritorna una stringa contenente
+            l'ultimo accesso del contatto
+            della chat attiva
+        *********************************/
         getLastAcc() {
-            const contact = this.contacts[this.active];
-            const lastMsg = contact.messages.length - 1;
-            const string = contact.messages[lastMsg].date.split(' ');
+            const contact = this.getMessages;
+            const lastMsg = contact.length - 1;
+            const string = contact[lastMsg].date.split(' ');
             return 'il ' + string[0] + ' alle ' + string[1];
         },
+
+        /**********************************
+            ritorna una stringa contenente
+            una risposta casuale
+        *********************************/
         randomMsg() {
             const length = this.answers.length;
             const random = Math.floor(Math.random() * length);
             return this.answers[random];
         },
+
+        /**********************************
+            ritorna una stringa contenente
+            il link all'avatar del contatto
+            della chat attiva
+        *********************************/
         getAvatar() {
             return this.contacts[this.active].avatar;
         },
+
+        /**********************************
+            ritorna una stringa contenente
+            il nome del contatto
+            della chat attiva
+        *********************************/
         getName() {
-            console.log(this.contacts[this.active].name);
             return this.contacts[this.active].name;
         }
     }
