@@ -345,12 +345,19 @@ const app = new Vue({
             const contact = this.contacts[this.active];
             const lastMsg = contact.messages.length - 1;
             const string = contact.messages[lastMsg].date.split(' ');
-            return string[0] + ' alle ' + string[1];
+            return 'il ' + string[0] + ' alle ' + string[1];
         },
         randomMsg() {
             const length = this.answers.length;
             const random = Math.floor(Math.random() * length);
             return this.answers[random];
+        },
+        getAvatar() {
+            return this.contacts[this.active].avatar;
+        },
+        getName() {
+            console.log(this.contacts[this.active].name);
+            return this.contacts[this.active].name;
         }
     }
 })

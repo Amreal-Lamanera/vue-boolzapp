@@ -140,15 +140,25 @@
                             <div class="me__profile d-flex align-items-center">
                                 <i class="fa fa-arrow-left me-3 d-md-none pointer" aria-hidden="true"
                                     :class="smartphoneChat ? 'd-block' : 'd-none'" @click="smartphoneChat=false"></i>
-                                <img src="img/IMG_9783.JPEG" alt="My profile pic" class="me-3 profile">
-                                <div>
-                                    <span class="d-block">Francesco</span>
-                                    <span class="font_small c_dark-grey" v-if="!writing && active!= null">
-                                        Ultimo accesso: {{ getLastAcc() }}
-                                    </span>
-                                    <span class="font_small c_dark-grey" v-else-if="writing">
-                                        {{ write}}
-                                    </span>
+
+                                <div class="contacts-card d-flex p-3 align-items-center pointer" v-if="active !== null">
+
+                                    <img class="profile bg-white me-3" :src="getAvatar()">
+
+                                    <div class="d-flex flex-column">
+                                        <div class="msg_wrapper">
+                                            <span class="d-block">
+                                                {{ getName() }}
+                                            </span>
+                                        </div>
+
+                                        <span class="font_small c_dark-grey" v-if="!writing && active!= null">
+                                            Ultimo accesso: {{ getLastAcc() }}
+                                        </span>
+                                        <span class="font_small c_dark-grey" v-else-if="writing">
+                                            {{ write}}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
 
