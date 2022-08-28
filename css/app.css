@@ -65,6 +65,28 @@ body {
     color: #FFF;
 }
 
+.my__btn {
+    background-color: #8edafc;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 2px #003853;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.main-popup .my__btn {
+    color: white;
+    background-color: #000;
+}
+
+.my__btn:hover {
+    box-shadow: 0 0 5px #003853;
+}
+
+.main-popup .my__btn:hover {
+    box-shadow: 0 0 5px #000;
+}
+
 /*****************************
     ASIDE
 *****************************/
@@ -96,14 +118,17 @@ header,
 }
 
 .main-popup {
-    background-color: var(--green);
+    background-color: var(--grey);
     line-height: 1rem;
     z-index: 1;
     border-radius: 1rem;
     font-size: 0.75rem;
     width: 25vw;
     text-align: center;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 1px black;
+    font-size: 1rem;
+    cursor: auto;
+    font-weight: normal;
 }
 
 .main-popup.popup__left {

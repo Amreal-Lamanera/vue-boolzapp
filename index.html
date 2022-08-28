@@ -64,8 +64,7 @@
                                         <div class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__middle"
                                             v-if="addContactPopup" @click.stop>
                                             <span class=" mb-3">Vuoi aggiungere un nuovo contatto?</span>
-                                            <div class="border-1 border-dark bg_grey p-3 border pointer"
-                                                @click.stop="addContactHandler">
+                                            <div class="my__btn" @click.stop="addContactHandler">
                                                 Crea Nuovo</div>
                                         </div>
                                     </i>
@@ -129,8 +128,7 @@
                             <div v-if="getContactsFiltered.length === 0"
                                 class="d-flex p-3 align-items-center justify-content-center flex-column">
                                 <span class="pt-5 mb-3">Contatto non presente</span>
-                                <div class="border-1 border-dark bg_grey p-3 border pointer"
-                                    @click.stop="addingContactHandler">
+                                <div class="my__btn" @click.stop="addingContactHandler">
                                     Aggiungi
                                     ai contatti</div>
                             </div>
@@ -157,11 +155,9 @@
 
 
                                 <div class="align-self-center d-flex">
-                                    <div class="border-1 border-dark bg_grey p-3 border pointer me-3 btn"
-                                        @click="addContact">
+                                    <div class="me-3 my__btn" @click="addContact">
                                         Salva</div>
-                                    <div class="border-1 border-dark bg_grey p-3 border pointer align-self-center btn"
-                                        @click="addingContact=false">
+                                    <div class="align-self-center my__btn" @click="addingContact=false">
                                         Annulla</div>
                                 </div>
                             </div>
