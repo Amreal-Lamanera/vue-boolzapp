@@ -222,11 +222,15 @@ const app = new Vue({
         text: '',
         addingContact: false,
         newAvatar: '',
+        newName: '',
         showMsg: -1,
         showInfo: false,
         writing: false,
         write: 'Online',
-        answers
+        answers,
+        addContactPopup: false,
+        statusPopup: false,
+        notificationsAlert: true
     },
     /**********************************
         COMPUTED
@@ -370,9 +374,11 @@ const app = new Vue({
         *********************************/
         addContact() {
             const newContact = new Object;
-            if (this.text === '') alert('Nome mancante')
+            // this.newName = this.text;
+            console.log(this.newName);
+            if (this.newName === '') alert('Nome mancante')
             else {
-                newContact.name = this.text;
+                newContact.name = this.newName;
                 if (this.newAvatar === '') alert('Avatar assente')
                 else {
                     newContact.avatar = this.newAvatar;
@@ -474,6 +480,33 @@ const app = new Vue({
         *********************************/
         isNew() {
             return !this.getMessages.length;
+        },
+        /**********************************
+            gestisce il click su
+            "crea nuovo"
+        *********************************/
+        addContactHandler() {
+            this.addContactPopup = false;
+            this.addingContact = true;
+            this.newName = '';
+
+        },
+        /**********************************
+            gestisce la chiusura dei pop-up
+            cliccando fuori da essi
+        *********************************/
+        popupsHandler() {
+            this.statusPopup = false;
+            this.addContactPopup = false;
+            this.addingContact = false;
+        },
+        /**********************************
+            gestisce il click su
+            "aggiungi ai contatti"
+        *********************************/
+        addingContactHandler() {
+            this.addingContact = true;
+            this.newName = this.text;
         }
     }
 })

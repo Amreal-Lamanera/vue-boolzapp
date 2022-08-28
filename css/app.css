@@ -3,8 +3,9 @@
 *****************************/
 
 :root {
-    --grey: #eaeaea;
+    --grey: #c2c2c2;
     --light-grey: #f1f1f1;
+    --green: #009688;
 }
 
 body {
@@ -78,10 +79,42 @@ nav {
     height: 100%;
 }
 
+header .me__buttons {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    header .me__buttons {
+        display: block;
+    }
+}
+
 header,
 .search-chat,
 .notifications {
     flex-basis: 0;
+}
+
+.main-popup {
+    background-color: var(--green);
+    line-height: 1rem;
+    z-index: 1;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    width: 25vw;
+    text-align: center;
+    box-shadow: 0 0 5px black;
+}
+
+.main-popup.popup__left {
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+}
+
+.main-popup.popup__middle {
+    top: 120%;
+    left: -13vw;
 }
 
 .notifications {
@@ -93,6 +126,10 @@ header,
     flex-grow: 1;
     max-height: 100%;
     overflow: auto;
+}
+
+.contacts-card:not(.bg_grey):hover {
+    background-color: #eaeaea;
 }
 
 .not__bell {
@@ -145,6 +182,18 @@ main {
 
 .chat-container.my_p {
     padding: 2rem 1rem 1rem 2.5rem;
+}
+
+.chat-container #main-title {
+    font-size: 2rem;
+}
+
+.chat-container #beta {
+    font-size: 0.75rem;
+    background-color: #b1b1b1;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    vertical-align: middle;
 }
 
 .def-img {
