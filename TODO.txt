@@ -1,0 +1,4 @@
+1- rimuovere 'attuva notifiche desktop' dalla versione mobile
+2- bug in mobile: quando si torna indietro da una chat, il contatto rimane attivo e non si può tornare nella sua chat a meno di andare prima in un'altra
+3- stile mobile: la freccia 'indietro dalla chat' è attaccata al bordo
+4- rimuovere lo zoom sull'input text in mobile (possibile?)
