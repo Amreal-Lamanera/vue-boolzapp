@@ -442,8 +442,9 @@ const app = new Vue({
         getLastAcc() {
             const contact = this.getMessages;
             const lastMsg = contact.length - 1;
-            const string = contact[lastMsg].date.split(' ');
-            return 'il ' + string[0] + ' alle ' + string[1];
+            const date = contact[lastMsg].date
+            const string = date.split(' ');
+            return 'il ' + string[0] + ' alle ' + this.formatHour(date);
         },
 
         /**********************************
