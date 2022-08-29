@@ -141,7 +141,7 @@
 
                         <!--
                         ------------------------------------------------------------------------
-                            SIDEBAR - CONTACTS: contenitore delle chat
+                            SIDEBAR - CONTACTS: contenitore dei contatti
                         -----------------------------------------------------------------------
                         -->
                         <div class="contacts-container-wrapper">
@@ -156,7 +156,7 @@
                                         :class="index===active ? 'bg_grey' : ''"
                                         @click="moveActive(index); scrollHandler();">
 
-                                        <img class="profile bg-white me-2" :src="contact.avatar">
+                                        <img class="profile bg-white me-2" :src=`img/${contact.avatar}`>
 
                                         <div class="msg_wrapper">
                                             <span class="d-block">

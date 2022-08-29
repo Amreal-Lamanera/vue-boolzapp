@@ -6,7 +6,7 @@ dayjs.extend(window.dayjs_plugin_customParseFormat);
 const contacts = [
     {
         name: 'Godrick',
-        avatar: 'img/godrick.jpg',
+        avatar: 'godrick.jpg',
         visible: true,
         messages: [
             {
@@ -28,7 +28,7 @@ const contacts = [
     },
     {
         name: 'Melina',
-        avatar: 'img/melina.jpg',
+        avatar: 'melina.jpg',
         visible: true,
         messages: [
             {
@@ -50,7 +50,7 @@ const contacts = [
     },
     {
         name: 'Agheel',
-        avatar: 'img/agheel.jpg',
+        avatar: 'agheel.jpg',
         visible: true,
         messages: [
             {
@@ -72,7 +72,7 @@ const contacts = [
     },
     {
         name: 'Malenia',
-        avatar: 'img/malenia.jpg',
+        avatar: 'malenia.jpg',
         visible: true,
         messages: [
             {
@@ -89,7 +89,7 @@ const contacts = [
     },
     {
         name: 'Godfrey',
-        avatar: 'img/godfrey.jpg',
+        avatar: 'godfrey.jpg',
         visible: true,
         messages: [
             {
@@ -106,7 +106,7 @@ const contacts = [
     },
     {
         name: 'Radhan',
-        avatar: 'img/radhan.jpeg',
+        avatar: 'radhan.jpeg',
         visible: true,
         messages: [
             {
@@ -128,7 +128,7 @@ const contacts = [
     },
     {
         name: 'Rykard',
-        avatar: 'img/rykard.png',
+        avatar: 'rykard.png',
         visible: true,
         messages: [
             {
@@ -145,7 +145,7 @@ const contacts = [
     },
     {
         name: 'Fia',
-        avatar: 'img/fia.jpg',
+        avatar: 'fia.jpg',
         visible: true,
         messages: [
             {
