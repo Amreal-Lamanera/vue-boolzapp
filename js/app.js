@@ -465,7 +465,7 @@ const app = new Vue({
             della chat attiva
         *********************************/
         getAvatar() {
-            return this.contacts[this.active].avatar;
+            return 'img/' + this.contacts[this.active].avatar;
         },
 
         /**********************************
