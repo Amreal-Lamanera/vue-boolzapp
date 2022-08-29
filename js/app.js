@@ -350,7 +350,8 @@ const app = new Vue({
         controlSearch() {
             // this.text = '';
             // if (!this.search) {
-            console.log(this.$refs.typeBox);
+            // console.log(this.$refs.typeBox);
+            console.log('click lente');
             this.$refs.typeBox.focus();
             // }
 
@@ -363,10 +364,21 @@ const app = new Vue({
             con un ritardo di 200ms
             altrimenti causerebbe un bug
         *********************************/
-        controlInput() {
-            // setTimeout(() => {
-            if (this.text === '') this.search = true;
-            // }, 200)
+        // controlInput() {
+        //     // setTimeout(() => {
+        //     if (this.text === '') this.search = true;
+        //     // }, 200)
+        // },
+
+        blurHandler() {
+            console.log('blur');
+            setTimeout(() => {
+                this.search = false
+            }, 200)
+        },
+        clickHandler() {
+            console.log('click freccia');
+            this.text = ''
         },
 
         /**********************************

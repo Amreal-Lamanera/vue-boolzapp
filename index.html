@@ -98,12 +98,12 @@
                                 <i class="fa-solid fa-magnifying-glass c_grey"></i>
                             </div>
 
-                            <div v-else class="search_btn bg-white px-4 py-1 pointer" @click="text=''">
+                            <div v-else class="search_btn bg-white px-4 py-1 pointer" @click="clickHandler">
                                 <i class="fa-solid fa-arrow-left c_grey"></i>
                             </div>
 
                             <input type="text" class="w-100 font_small" placeholder="Cerca o inizia una nuova chat"
-                                ref="typeBox" v-model="text" @focus="search = true" @blur="search=false">
+                                ref="typeBox" v-model="text" @focus="search = true" @blur="blurHandler">
 
                         </div>
                         <div class="contacts-container-wrapper">
