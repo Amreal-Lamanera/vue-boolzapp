@@ -105,7 +105,8 @@
 
                                     <div v-if="getContactsFiltered.includes(contact)"
                                         class="contacts-card d-flex p-3 align-items-center pointer"
-                                        :class="index===active ? 'bg_grey' : ''" @click="moveActive(index)">
+                                        :class="index===active ? 'bg_grey' : ''"
+                                        @click="moveActive(index); scrollHandler();">
 
                                         <img class="profile bg-white me-2" :src="contact.avatar">
 
@@ -205,8 +206,7 @@
                         </div>
                     </header>
 
-                    <div class="chat-container d-flex flex-column position-relative"
-                        :class="active === null ? '' : 'my_p'">
+                    <div class="chat-container d-flex flex-column" id="prova" :class="active === null ? '' : 'my_p'">
                         <div v-if="active === null"
                             class="def-img d-flex align-items-center justify-content-center flex-column">
                             <img src="img/def.jpg" alt="">
@@ -229,13 +229,13 @@
                                         {{ formatHour(message.date)}}
                                     </span>
                                 </div>
-                                <div class="layover" @click="changeShow(index)">
+                                <div class="layover" @click.stop="changeShow(index)">
                                     <i class="fa-solid fa-angle-down pointer"></i>
                                 </div>
                                 <div v-if="index === showMsg" class="deleteOpt">
-                                    <div class="border-bottom border-1 info" @click="invertInfo(index)">
+                                    <div class="border-bottom border-1 info" @click.stop="invertInfo(index)">
                                         Info Message</div>
-                                    <div class="delete" @click="deleteMsg(index)">Delete message</div>
+                                    <div class="delete" @click.stop="deleteMsg(index)">Delete message</div>
                                 </div>
                             </div>
                         </template>

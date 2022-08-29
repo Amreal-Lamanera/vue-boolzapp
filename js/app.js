@@ -499,6 +499,7 @@ const app = new Vue({
             this.statusPopup = false;
             this.addContactPopup = false;
             this.addingContact = false;
+            this.showMsg = -1;
         },
         /**********************************
             gestisce il click su
@@ -515,6 +516,9 @@ const app = new Vue({
         mobileBackHandler() {
             this.smartphoneChat = false;
             this.active = null;
-        }
-    }
+        },
+        scrollHandler() {
+            document.getElementById('prova').scrollTo(0, 994);
+        },
+    },
 })
