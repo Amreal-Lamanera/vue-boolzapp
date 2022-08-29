@@ -37,7 +37,7 @@
         <div id="app" @click="popupsHandler">
 
             <div class="container-fluid main-container row">
-                <aside class="d-md-block col-md-4 p-0" :class="smartphoneChat ? 'd-none' : 'd-block'">
+                <aside class="d-md-block col-md-4 p-0 col-12" :class="smartphoneChat ? 'd-none' : 'd-block'">
                     <nav class="d-flex flex-column">
 
                         <header class="me bg_grey">
@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="not__desc">
-                                <span class="d-block">Ricevi notifiche di nuovi messaggi</span>
+                                <span class="d-block">Ricevi notifiche di nuovi messaggi </span>
                                 <span class="font_small text-decoration-underline pointer"
                                     @click="notificationsAlert = false">
                                     Attiva notifiche desktop

@@ -12,12 +12,28 @@ body {
     background: linear-gradient(#009688 10%, #d3dbda 0%);
     background-repeat: no-repeat;
     height: 100vh;
-    padding: 20px;
+    /* padding: 20px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@media (min-width: 992px) {
-    body {
-        padding: 2.5vh 5vh;
+.main-container.row {
+    min-width: 350px;
+    max-width: 350px;
+}
+
+@media (min-width: 576px) {
+    .main-container.row {
+        min-width: 500px;
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 768px) {
+    .main-container.row {
+        min-width: auto;
+        max-width: none;
     }
 }
 
