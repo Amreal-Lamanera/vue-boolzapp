@@ -518,7 +518,8 @@ const app = new Vue({
             this.active = null;
         },
         scrollHandler() {
-            document.getElementById('prova').scrollTo(0, 994);
+            const container = this.$el.querySelector("#prova");
+            container.scrollTop = container.scrollHeight;
         },
     },
 })
