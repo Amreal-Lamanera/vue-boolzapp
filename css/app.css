@@ -111,7 +111,7 @@ header .me__buttons {
     }
 }
 
-header,
+.main-container header,
 .search-chat,
 .notifications {
     flex-basis: 0;
@@ -187,7 +187,7 @@ header,
 *****************************/
 
 header {
-    flex-basis: 0;
+    /* flex-basis: 0; */
 }
 
 main {
@@ -200,7 +200,7 @@ main {
 
 .chat-container {
     overflow: auto;
-    height: calc(100% - 200px);
+    /* height: calc(100% - 200px); */
     flex-basis: 0;
     flex-grow: 1;
 }
@@ -290,7 +290,7 @@ main {
 }
 
 .chat-input {
-    flex-basis: 0;
+    /* flex-basis: 0; */
     padding: 0.5rem 1.5rem;
     background-color: rgba(234, 234, 234, 0.9)
 }

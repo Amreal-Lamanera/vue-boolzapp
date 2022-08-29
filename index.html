@@ -92,12 +92,19 @@
                         </div>
 
                         <div class="search-chat bg_light-grey p-1 d-flex">
-                            <div class="search_btn bg-white px-4 py-1 pointer" @click="controlSearch">
-                                <i v-if="search" class="fa-solid fa-magnifying-glass c_grey"></i>
-                                <i v-else class="fa-solid fa-arrow-left c_grey"></i>
+
+                            <div v-if="!search && !text" class="search_btn bg-white px-4 py-1 pointer"
+                                @click="controlSearch">
+                                <i class="fa-solid fa-magnifying-glass c_grey"></i>
                             </div>
+
+                            <div v-else class="search_btn bg-white px-4 py-1 pointer" @click="text=''">
+                                <i class="fa-solid fa-arrow-left c_grey"></i>
+                            </div>
+
                             <input type="text" class="w-100 font_small" placeholder="Cerca o inizia una nuova chat"
-                                ref="typeBox" v-model="text" @focus="search = false" @blur="controlInput">
+                                ref="typeBox" v-model="text" @focus="search = true" @blur="search=false">
+
                         </div>
                         <div class="contacts-container-wrapper">
                             <div class="d-flex flex-column">
@@ -206,7 +213,9 @@
                         </div>
                     </header>
 
-                    <div class="chat-container d-flex flex-column" id="prova" :class="active === null ? '' : 'my_p'">
+                    <div class="chat-container d-flex flex-column" ref="containerRef"
+                        :class="active === null ? '' : 'my_p'">
+
                         <div v-if="active === null"
                             class="def-img d-flex align-items-center justify-content-center flex-column">
                             <img src="img/def.jpg" alt="">

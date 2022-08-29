@@ -218,7 +218,7 @@ const app = new Vue({
         active: null,
         contacts,
         newMessage: '',
-        search: true,
+        search: false,
         text: '',
         addingContact: false,
         newAvatar: '',
@@ -230,7 +230,7 @@ const app = new Vue({
         answers,
         addContactPopup: false,
         statusPopup: false,
-        notificationsAlert: true
+        notificationsAlert: true,
     },
     /**********************************
         COMPUTED
@@ -304,21 +304,22 @@ const app = new Vue({
             });
 
             this.writing = true;
-            setTimeout(() => {
-                this.write = 'Sta scrivendo...';
-                setTimeout(() => {
-                    this.contacts[this.active].messages.push({
-                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                        message: this.randomMsg(),
-                        status: 'received'
-                    }
-                    );
-                    this.write = 'Online';
-                    this.writing = false;
-                }, 2000);
-            }, 3000)
+            // setTimeout(() => {
+            //     this.write = 'Sta scrivendo...';
+            //     setTimeout(() => {
+            //         this.contacts[this.active].messages.push({
+            //             date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+            //             message: this.randomMsg(),
+            //             status: 'received'
+            //         }
+            //         );
+            //         this.write = 'Online';
+            //         this.writing = false;
+            //         this.scrollHandler();
+            //     }, 2000);
+            // }, 3000)
 
-
+            this.scrollHandler();
             this.newMessage = ''
         },
 
@@ -347,13 +348,13 @@ const app = new Vue({
             sull'input text
         *********************************/
         controlSearch() {
-            if (!this.search) {
-                this.search = true;
-                this.text = '';
-            }
-            else {
-                this.$refs.typeBox.focus();
-            }
+            // this.text = '';
+            // if (!this.search) {
+            console.log(this.$refs.typeBox);
+            this.$refs.typeBox.focus();
+            // }
+
+            // this.search = !this.search;
         },
 
         /**********************************
@@ -363,9 +364,9 @@ const app = new Vue({
             altrimenti causerebbe un bug
         *********************************/
         controlInput() {
-            setTimeout(() => {
-                if (this.text === '') this.search = true;
-            }, 200)
+            // setTimeout(() => {
+            if (this.text === '') this.search = true;
+            // }, 200)
         },
 
         /**********************************
@@ -518,8 +519,10 @@ const app = new Vue({
             this.active = null;
         },
         scrollHandler() {
-            const container = this.$el.querySelector("#prova");
-            container.scrollTop = container.scrollHeight;
+            this.$nextTick(function () {
+                const container = this.$refs.containerRef;
+                container.scrollTop = container.scrollHeight;
+            })
         },
     },
 })
