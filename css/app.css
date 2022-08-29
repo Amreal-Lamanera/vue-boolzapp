@@ -185,11 +185,6 @@ header .me__buttons {
 /*****************************
     MAIN
 *****************************/
-
-header {
-    /* flex-basis: 0; */
-}
-
 main {
     background-image: url('../img/mine.jpg');
     background-repeat: repeat;
@@ -330,9 +325,8 @@ main {
 }
 
 /*****************************
-    DEBUG 
+    DEBUG
 *****************************/
-
 .debug .main-container {
     border: 1px solid black;
 }
