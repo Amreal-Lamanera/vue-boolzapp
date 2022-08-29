@@ -507,6 +507,14 @@ const app = new Vue({
         addingContactHandler() {
             this.addingContact = true;
             this.newName = this.text;
+        },
+        /**********************************
+            gestisce il click sulla freccia
+            indietro in mobile
+        *********************************/
+        mobileBackHandler() {
+            this.smartphoneChat = false;
+            this.active = null;
         }
     }
 })
