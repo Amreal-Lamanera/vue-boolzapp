@@ -87,15 +87,15 @@ body {
     box-shadow: 0 0 5px #000;
 }
 
-.popup__bg {
+/* .popup__bg {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 9;
-    /* background-color: #000; */
-}
+    background-color: #000;
+} */
 
 /*****************************
     ASIDE
@@ -165,6 +165,42 @@ header .me__buttons {
 
 .contacts-card:not(.bg_grey):hover {
     background-color: #eaeaea;
+}
+
+.contacts-card .layover {
+    display: none;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+}
+
+.delete-popup {
+    z-index: 99;
+    background-color: #FFF;
+    border: 1px solid black;
+    top: 100%;
+    right: 0;
+    font-size: 0.75rem;
+    width: max-content;
+    padding: 1rem 0.5rem;
+}
+
+.contacts-card:hover .layover {
+    display: block;
+}
+
+.delete-btn {
+    font-weight: bold;
+}
+
+.popup__bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    /* background-color: #000; */
 }
 
 .not__bell {
@@ -265,7 +301,7 @@ main {
     bottom: 0;
 }
 
-.chat-card.sent .msg {
+.chat-card .msg {
     margin-right: 1rem;
 }
 

@@ -231,6 +231,8 @@ const app = new Vue({
         addContactPopup: false,
         statusPopup: false,
         notificationsAlert: true,
+        deletePopup: false,
+        deleteIndex: -1
     },
     /**********************************
         COMPUTED
@@ -513,5 +515,15 @@ const app = new Vue({
                 container.scrollTop = container.scrollHeight;
             })
         },
+        deleteHandler(i) {
+            this.deleteIndex = i;
+            this.deletePopup = true;
+
+        },
+        deleteContact(i) {
+            this.contacts.splice(i, 1);
+            this.active = null;
+            this.deletePopup = false;
+        }
     },
 })

@@ -152,7 +152,7 @@
 
                                     <!-- SE contact è nell'array dei contatti filtrati -->
                                     <div v-if="getContactsFiltered.includes(contact)"
-                                        class="contacts-card d-flex p-3 align-items-center pointer"
+                                        class="contacts-card d-flex p-3 align-items-center pointer position-relative"
                                         :class="index===active ? 'bg_grey' : ''"
                                         @click="moveActive(index); scrollHandler();">
 
@@ -170,6 +170,19 @@
                                         <span class="font_small c_grey align-self-start ms-auto">
                                             {{ getHour(contact.messages) }}
                                         </span>
+
+                                        <div class="layover">
+                                            <div @click.stop="deleteHandler(index)" class="delete-btn">X</div>
+                                            <template v-if="deletePopup && deleteIndex === index">
+                                                <div class="delete-popup position-absolute">
+                                                    <span class=" mb-1">Vuoi eliminare il contatto?</span>
+                                                    <div class="my__btn d-inline-block"
+                                                        @click.stop="deleteContact(index)">
+                                                        Elimina</div>
+                                                </div>
+                                                <div class="popup__bg" @click="deletePopup = false"></div>
+                                            </template>
+                                        </div>
 
                                     </div>
                                 </template>
