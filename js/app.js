@@ -88,7 +88,7 @@ const contacts = [
         ],
     },
     {
-        name: 'Gedfrey',
+        name: 'Godfrey',
         avatar: 'img/godfrey.jpg',
         visible: true,
         messages: [
