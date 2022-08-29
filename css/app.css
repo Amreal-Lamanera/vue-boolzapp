@@ -236,7 +236,7 @@ main {
 }
 
 .chat-card {
-    max-width: 40%;
+    max-width: 100%;
     background-color: #FFF;
     border-radius: 0.5rem;
     padding: 2rem 1rem;
@@ -287,6 +287,10 @@ main {
 
 .chat-card:hover .layover {
     display: block;
+}
+
+.chat-card.received {
+    align-self: flex-start;
 }
 
 .chat-card.sent {
