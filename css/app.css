@@ -87,15 +87,14 @@ body {
     box-shadow: 0 0 5px #000;
 }
 
-/* .popup__bg {
+.popup__bg {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     z-index: 9;
-    background-color: #000;
-} */
+}
 
 /*****************************
     ASIDE
@@ -191,16 +190,7 @@ header .me__buttons {
 
 .delete-btn {
     font-weight: bold;
-}
-
-.popup__bg {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 9;
-    /* background-color: #000; */
+    color: var(--grey);
 }
 
 .not__bell {
