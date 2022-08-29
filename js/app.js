@@ -274,7 +274,7 @@ const app = new Vue({
         },
 
         /**********************************
-            prende una data e ritorna 
+            prende una data e ritorna
             l'ora come stringa 'HH:mm'
         *********************************/
         formatHour(date) {
@@ -304,20 +304,20 @@ const app = new Vue({
             });
 
             this.writing = true;
-            // setTimeout(() => {
-            //     this.write = 'Sta scrivendo...';
-            //     setTimeout(() => {
-            //         this.contacts[this.active].messages.push({
-            //             date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-            //             message: this.randomMsg(),
-            //             status: 'received'
-            //         }
-            //         );
-            //         this.write = 'Online';
-            //         this.writing = false;
-            //         this.scrollHandler();
-            //     }, 2000);
-            // }, 3000)
+            setTimeout(() => {
+                this.write = 'Sta scrivendo...';
+                setTimeout(() => {
+                    this.contacts[this.active].messages.push({
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        message: this.randomMsg(),
+                        status: 'received'
+                    }
+                    );
+                    this.write = 'Online';
+                    this.writing = false;
+                    this.scrollHandler();
+                }, 2000);
+            }, 3000)
 
             this.scrollHandler();
             this.newMessage = ''
@@ -340,44 +340,30 @@ const app = new Vue({
         resetInput() {
             this.search = false;
         },
-
         /**********************************
-            se search non era attivo
-            lo attiva e resetta il testo
-            altrimenti passa il focus
-            sull'input text
+            funzione che gestisce il click
+            sulla lente dell'input
         *********************************/
         controlSearch() {
-            // this.text = '';
-            // if (!this.search) {
-            // console.log(this.$refs.typeBox);
-            console.log('click lente');
+            // console.log('click lente');
             this.$refs.typeBox.focus();
-            // }
-
-            // this.search = !this.search;
         },
-
         /**********************************
-            controlla che l'input text
-            sia vuoto e attiva search
-            con un ritardo di 200ms
-            altrimenti causerebbe un bug
+            funzione che gestisce il blur
+            dell'input
         *********************************/
-        // controlInput() {
-        //     // setTimeout(() => {
-        //     if (this.text === '') this.search = true;
-        //     // }, 200)
-        // },
-
         blurHandler() {
-            console.log('blur');
+            // console.log('blur');
             setTimeout(() => {
                 this.search = false
             }, 200)
         },
+        /**********************************
+            funzione che gestisce il click
+            sulla freccia dell'input
+        *********************************/
         clickHandler() {
-            console.log('click freccia');
+            // console.log('click freccia');
             this.text = ''
         },
 

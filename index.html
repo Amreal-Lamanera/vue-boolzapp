@@ -36,11 +36,25 @@
     <body class="">
 
         <div id="app" @click="popupsHandler">
-
+            <!--
+            ---------------------------------------------------------------------------
+                DIV CONTENENTE TUTTA L'APPLICAZIONE
+            ---------------------------------------------------------------------------
+            -->
             <div class="container-fluid main-container row">
+                <!--
+                ---------------------------------------------------------------------------
+                    SIDEBAR START
+                ---------------------------------------------------------------------------
+                -->
                 <aside class="d-md-block col-md-4 p-0" :class="smartphoneChat ? 'd-none' : 'd-block'">
                     <nav class="d-flex flex-column">
 
+                        <!--
+                        ------------------------------------------------------------------------
+                            SIDEBAR - HEADER: profilo utente
+                        -----------------------------------------------------------------------
+                        -->
                         <header class="me bg_grey">
                             <div class="d-flex justify-content-between align-items-center p-3">
                                 <div class="me__profile d-flex align-items-center">
@@ -74,8 +88,14 @@
                                 </div>
                             </div>
                         </header>
+                        <!-- HEADER END -->
 
-                        <div class="notifications d-flex p-3 align-items-center" v-if="notificationsAlert">
+                        <!--
+                        ------------------------------------------------------------------------
+                            SIDEBAR - NOTIFICHE: gestione notifiche
+                        -----------------------------------------------------------------------
+                        -->
+                        <div class="notifications d-md-flex p-3 align-items-center d-none" v-if="notificationsAlert">
 
                             <div
                                 class="not__bell profile bg-white d-flex align-items-center justify-content-center me-2 pointer">
@@ -91,8 +111,12 @@
                             </div>
                         </div>
 
+                        <!--
+                        ------------------------------------------------------------------------
+                            SIDEBAR - SEARCH: input di ricerca contatto
+                        -----------------------------------------------------------------------
+                        -->
                         <div class="search-chat bg_light-grey p-1 d-flex">
-
                             <div v-if="!search && !text" class="search_btn bg-white px-4 py-1 pointer"
                                 @click="controlSearch">
                                 <i class="fa-solid fa-magnifying-glass c_grey"></i>
@@ -106,10 +130,20 @@
                                 ref="typeBox" v-model="text" @focus="search = true" @blur="blurHandler">
 
                         </div>
+                        <!-- SEARCH END -->
+
+                        <!--
+                        ------------------------------------------------------------------------
+                            SIDEBAR - CONTACTS: contenitore delle chat
+                        -----------------------------------------------------------------------
+                        -->
                         <div class="contacts-container-wrapper">
                             <div class="d-flex flex-column">
+
+                                <!-- PER OGNI contact in contacts -->
                                 <template v-for="(contact, index) in contacts">
 
+                                    <!-- SE contact è nell'array dei contatti filtrati -->
                                     <div v-if="getContactsFiltered.includes(contact)"
                                         class="contacts-card d-flex p-3 align-items-center pointer"
                                         :class="index===active ? 'bg_grey' : ''"
@@ -134,6 +168,7 @@
                                 </template>
                             </div>
 
+                            <!-- SE l'array dei contatti filtrati è vuoto => contatto cercato NON presente -->
                             <div v-if="getContactsFiltered.length === 0"
                                 class="d-flex p-3 align-items-center justify-content-center flex-column">
                                 <span class="pt-5 mb-3">Contatto non presente</span>
@@ -142,28 +177,25 @@
                                     ai contatti</div>
                             </div>
 
+                            <!-- SE voglio aggiungere un nuovo contatto => apro il popup -->
                             <div v-if="addingContact"
                                 class="pop-up bg_light-grey d-flex flex-column justify-content-center align-items-center"
                                 @click.stop>
+
                                 <div class="input-container">
                                     <span>
                                         Nome:
                                     </span>
-
                                     <input v-model="newName" class="me-xxl-3 me-0" @keyup.enter="addContact"
                                         placeholder="Inserisci il nome...">
-
                                     <span>
                                         Avatar Link:
                                     </span>
-
                                     <input v-model="newAvatar" class="mb-5" @keyup.enter="addContact"
                                         placeholder="Inserisci un link...">
                                 </div>
 
-
-
-                                <div class="align-self-center d-flex">
+                                <div class="btn-container align-self-center d-flex">
                                     <div class="me-3 my__btn" @click="addContact">
                                         Salva</div>
                                     <div class="align-self-center my__btn" @click="addingContact=false">
@@ -172,11 +204,21 @@
                             </div>
 
                         </div>
+                        <!-- CONTACTS END -->
                     </nav>
 
                 </aside>
+                <!-- END SIDEBAR -->
 
+                <!-- MAIN START -->
                 <main class="col-12 col-md-8 p-0 d-md-flex flex-column" :class="!smartphoneChat ? 'd-none' : 'd-flex'">
+
+                    <!--
+                    ------------------------------------------------------------------------
+                        MAIN - HEADER: my profile
+                    ------------------------------------------------------------------------
+                    -->
+                    <!-- SE ho un contatto attivo -->
                     <header class="me bg_grey" v-if="active !== null">
                         <div class="d-flex justify-content-between align-items-center ps-3">
                             <div class="me__profile d-flex align-items-center">
@@ -212,10 +254,17 @@
                             </div>
                         </div>
                     </header>
+                    <!-- HEADER END -->
 
+                    <!--
+                    ------------------------------------------------------------------------
+                        MAIN - CHAT: chat container
+                    ------------------------------------------------------------------------
+                    -->
                     <div class="chat-container d-flex flex-column" ref="containerRef"
                         :class="active === null ? '' : 'my_p'">
 
+                        <!-- SE non ho contatti attivi -->
                         <div v-if="active === null"
                             class="def-img d-flex align-items-center justify-content-center flex-column">
                             <img src="img/def.jpg" alt="">
@@ -224,8 +273,10 @@
                                 connesso a Internet.</span>
                         </div>
 
+                        <!-- ALTRIMENTI -->
                         <template v-else>
 
+                            <!-- stampo la chat -->
                             <div class="chat-card" v-for="(message, index) in getMessages" :class="message.status">
                                 <span v-if="!showInfo || showMsg!==index" class="msg">
                                     {{ message.message }}
@@ -251,7 +302,13 @@
 
 
                     </div>
+                    <!-- CHAT END -->
 
+                    <!--
+                    ------------------------------------------------------------------------
+                        MAIN - INPUT: chat input
+                    ------------------------------------------------------------------------
+                    -->
                     <div class="chat-input" v-if="active !== null">
                         <div class="d-flex align-items-center c_dark-grey">
                             <i class="fa-regular fa-face-smile"></i>
@@ -261,8 +318,11 @@
                             <i v-else class="fa-solid fa-paper-plane" aria-hidden="true" @click="addMessage"></i>
                         </div>
                     </div>
+                    <!-- INPUT END -->
 
                 </main>
+                <!-- MAIN END -->
+
             </div>
 
         </div>
