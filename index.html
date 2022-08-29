@@ -35,7 +35,7 @@
 
     <body class="">
 
-        <div id="app" @click="popupsHandler">
+        <div id="app">
             <!--
             ---------------------------------------------------------------------------
                 DIV CONTENENTE TUTTA L'APPLICAZIONE
@@ -64,24 +64,31 @@
 
                                 <div class="me__buttons">
                                     <i class="fa-solid fa-circle-notch pointer position-relative"
-                                        @click.stop="statusPopup = !statusPopup">
+                                        @click="statusPopup = true">
 
-                                        <div class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__left"
-                                            v-if="statusPopup" @click.stop>
-                                            <span>Sei online</span>
-                                        </div>
+                                        <template v-if="statusPopup">
+                                            <div
+                                                class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__left">
+                                                <span>Sei online</span>
+                                            </div>
+                                            <div class="popup__bg" @click.stop="statusPopup = false"></div>
+                                        </template>
 
                                     </i>
 
                                     <i class="fa-solid fa-plus px-2 pointer position-relative"
-                                        @click.stop="addContactPopup = !addContactPopup">
+                                        @click="addContactPopup = true">
 
-                                        <div class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__middle"
-                                            v-if="addContactPopup" @click.stop>
-                                            <span class=" mb-3">Vuoi aggiungere un nuovo contatto?</span>
-                                            <div class="my__btn" @click.stop="addContactHandler">
-                                                Crea Nuovo</div>
-                                        </div>
+                                        <template v-if="addContactPopup">
+                                            <div
+                                                class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__middle">
+                                                <span class=" mb-3">Vuoi aggiungere un nuovo contatto?</span>
+                                                <div class="my__btn" @click.stop="addContactHandler">
+                                                    Crea Nuovo</div>
+                                            </div>
+                                            <div class="popup__bg" @click.stop="addContactPopup = false"></div>
+                                        </template>
+
                                     </i>
 
                                     <i class="fa-solid fa-ellipsis-vertical pointer c_grey"></i>
@@ -172,36 +179,39 @@
                             <div v-if="getContactsFiltered.length === 0"
                                 class="d-flex p-3 align-items-center justify-content-center flex-column">
                                 <span class="pt-5 mb-3">Contatto non presente</span>
-                                <div class="my__btn" @click.stop="addingContactHandler">
+                                <div class="my__btn" @click="addingContactHandler">
                                     Aggiungi
-                                    ai contatti</div>
+                                    ai contatti
+                                </div>
                             </div>
 
                             <!-- SE voglio aggiungere un nuovo contatto => apro il popup -->
-                            <div v-if="addingContact"
-                                class="pop-up bg_light-grey d-flex flex-column justify-content-center align-items-center"
-                                @click.stop>
+                            <template v-if="addingContact">
+                                <div
+                                    class="pop-up bg_light-grey d-flex flex-column justify-content-center align-items-center">
 
-                                <div class="input-container">
-                                    <span>
-                                        Nome:
-                                    </span>
-                                    <input v-model="newName" class="me-xxl-3 me-0" @keyup.enter="addContact"
-                                        placeholder="Inserisci il nome...">
-                                    <span>
-                                        Avatar Link:
-                                    </span>
-                                    <input v-model="newAvatar" class="mb-5" @keyup.enter="addContact"
-                                        placeholder="Inserisci un link...">
-                                </div>
+                                    <div class="input-container">
+                                        <span>
+                                            Nome:
+                                        </span>
+                                        <input v-model="newName" class="me-xxl-3 me-0" @keyup.enter="addContact"
+                                            placeholder="Inserisci il nome...">
+                                        <span>
+                                            Avatar Link:
+                                        </span>
+                                        <input v-model="newAvatar" class="mb-5" @keyup.enter="addContact"
+                                            placeholder="Inserisci un link...">
+                                    </div>
 
-                                <div class="btn-container align-self-center d-flex">
-                                    <div class="me-3 my__btn" @click="addContact">
-                                        Salva</div>
-                                    <div class="align-self-center my__btn" @click="addingContact=false">
-                                        Annulla</div>
+                                    <div class="btn-container align-self-center d-flex">
+                                        <div class="me-3 my__btn" @click="addContact">
+                                            Salva</div>
+                                        <div class="align-self-center my__btn" @click="addingContact=false">
+                                            Annulla</div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="popup__bg" @click="addingContact = false"></div>
+                            </template>
 
                         </div>
                         <!-- CONTACTS END -->
@@ -289,14 +299,21 @@
                                         {{ formatHour(message.date)}}
                                     </span>
                                 </div>
+
                                 <div class="layover" @click.stop="changeShow(index)">
                                     <i class="fa-solid fa-angle-down pointer"></i>
                                 </div>
-                                <div v-if="index === showMsg" class="deleteOpt">
-                                    <div class="border-bottom border-1 info" @click.stop="invertInfo(index)">
-                                        Info Message</div>
-                                    <div class="delete" @click.stop="deleteMsg(index)">Delete message</div>
-                                </div>
+
+                                <template v-if="index === showMsg">
+                                    <div class="deleteOpt">
+                                        <div class="border-bottom border-1 info" @click.stop="invertInfo(index)">
+                                            Info Message</div>
+                                        <div class="delete" @click.stop="deleteMsg(index)">Delete message</div>
+                                    </div>
+                                    <div class="popup__bg" @click.stop="showMsg = -1"></div>
+                                </template>
+
+                                <div class="point"></div>
                             </div>
                         </template>
 

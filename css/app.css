@@ -87,6 +87,16 @@ body {
     box-shadow: 0 0 5px #000;
 }
 
+.popup__bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    /* background-color: #000; */
+}
+
 /*****************************
     ASIDE
 *****************************/
@@ -120,7 +130,7 @@ header .me__buttons {
 .main-popup {
     background-color: var(--grey);
     line-height: 1rem;
-    z-index: 1;
+    z-index: 99;
     border-radius: 1rem;
     font-size: 0.75rem;
     width: 200px;
@@ -201,7 +211,7 @@ main {
 }
 
 .chat-container.my_p {
-    padding: 2rem 1rem 1rem 2.5rem;
+    padding: 2rem 3rem;
 }
 
 .chat-container #main-title {
@@ -229,10 +239,34 @@ main {
     max-width: 40%;
     background-color: #FFF;
     border-radius: 0.5rem;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
     margin-bottom: 1rem;
     overflow-wrap: break-word;
     position: relative;
+}
+
+.point {
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.sent .point {
+    border-left: 50px solid #d5f9ba;
+    border-top: 1.5rem solid transparent;
+    right: -2rem;
+    bottom: 0;
+}
+
+.received .point {
+    border-right: 50px solid #FFF;
+    border-top: 1.5rem solid transparent;
+    left: -2rem;
+    bottom: 0;
+}
+
+.chat-card.sent .msg {
+    margin-right: 1rem;
 }
 
 .chat-card .layover {
@@ -262,14 +296,16 @@ main {
 
 .hour {
     position: absolute;
-    right: 5%;
+    right: 10%;
+    bottom: 5%;
 }
 
 .deleteOpt {
     position: absolute;
+    top: 100%;
     right: 5%;
     background-color: #FFF;
-    z-index: 2;
+    z-index: 99;
     box-shadow: 0 0 5px black;
     cursor: pointer;
 }
@@ -298,13 +334,11 @@ main {
 
 .pop-up {
     position: absolute;
-    /* width: 90vw;
-    height: 90vh; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 5px black;
-    z-index: 1;
+    z-index: 99;
     padding: 3rem;
     border-radius: 1rem;
 }

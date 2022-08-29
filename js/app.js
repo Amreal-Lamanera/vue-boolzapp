@@ -491,16 +491,6 @@ const app = new Vue({
 
         },
         /**********************************
-            gestisce la chiusura dei pop-up
-            cliccando fuori da essi
-        *********************************/
-        popupsHandler() {
-            this.statusPopup = false;
-            this.addContactPopup = false;
-            this.addingContact = false;
-            this.showMsg = -1;
-        },
-        /**********************************
             gestisce il click su
             "aggiungi ai contatti"
         *********************************/
