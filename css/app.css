@@ -307,7 +307,6 @@ main {
 
 .sent+.received,
 .received+.sent {
-    display: block;
     margin-top: 1rem;
 }
 
