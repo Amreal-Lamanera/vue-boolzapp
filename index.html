@@ -65,6 +65,8 @@
                                 </div>
 
                                 <div class="me__buttons">
+
+                                    <!-- PULSANTE DI STATUS -->
                                     <i class="fa-solid fa-circle-notch pointer position-relative"
                                         @click="statusPopup = true">
 
@@ -78,6 +80,7 @@
 
                                     </i>
 
+                                    <!-- PULSANTE PER AGGGIUNGERE UN CONTATTO -->
                                     <i class="fa-solid fa-plus px-2 pointer position-relative"
                                         @click="addContactPopup = true">
 
@@ -93,6 +96,7 @@
 
                                     </i>
 
+                                    <!-- PULSANTE PER MODIFICARE IL PROFILO -->
                                     <i class="fa-solid fa-ellipsis-vertical pointer position-relative"
                                         @click="editProfilePopup = true">
 
@@ -108,6 +112,7 @@
 
                                     </i>
 
+                                    <!-- POPUP PER LA MODIFICA DEL PROFILO -->
                                     <template v-if="editingProfile">
                                         <div
                                             class="pop-up bg_light-grey d-flex flex-column justify-content-center align-items-center">
