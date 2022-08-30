@@ -521,6 +521,9 @@ const app = new Vue({
             this.active = null;
         },
 
+        /**********************************
+            gestisce lo scroll della chat
+        *********************************/
         scrollHandler() {
             this.$nextTick(function () {
                 const container = this.$refs.containerRef;
@@ -528,22 +531,38 @@ const app = new Vue({
             })
         },
 
+        /**********************************
+            gestisce il click sulla X per
+            eliminare un contatto
+        *********************************/
         deleteHandler(i) {
             this.deleteIndex = i;
             this.deletePopup = true;
 
         },
 
+        /**********************************
+            funzione che elimina il
+            contatto a indice i
+        *********************************/
         deleteContact(i) {
             this.contacts.splice(i, 1);
             if (i === this.active) this.active = null;
             this.deletePopup = false;
         },
 
+        /**********************************
+            gestisce il click sul tasto
+            modifica profilo
+        *********************************/
         editProfileHandler() {
             this.editingProfile = true;
         },
 
+        /**********************************
+            funzione che modifica il
+            profilo
+        *********************************/
         editProfile() {
             const newName = this.newName.trim();
             const newAvatar = this.newAvatar;
