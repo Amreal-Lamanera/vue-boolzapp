@@ -313,11 +313,13 @@ const app = new Vue({
                 message: this.newMessage,
                 status: 'sent'
             }
+
+            // se sto rispondeno ad un messaggio aggiungo delle proprietà all'oggetto
             if (this.quotedMsg != null) {
                 newObj.quotedMsg = this.quotedMsg.message;
                 if (this.quotedMsg.status === 'sent') newObj.name = 'Tu';
                 else newObj.name = this.contacts[this.active].name;
-                this.quotedMsg = null
+                this.quotedMsg = null;
             }
 
             messages.push(newObj);
@@ -360,6 +362,7 @@ const app = new Vue({
         resetInput() {
             this.search = false;
         },
+
         /**********************************
             funzione che gestisce il click
             sulla lente dell'input
@@ -374,9 +377,8 @@ const app = new Vue({
             dell'input
         *********************************/
         blurHandler() {
-            // console.log('blur');
             setTimeout(() => {
-                this.search = false
+                this.search = false;
             }, 200)
         },
 
@@ -385,8 +387,7 @@ const app = new Vue({
             sulla freccia dell'input
         *********************************/
         clickHandler() {
-            // console.log('click freccia');
-            this.text = ''
+            this.text = '';
         },
 
         /**********************************
@@ -395,8 +396,7 @@ const app = new Vue({
         *********************************/
         addContact() {
             const newContact = new Object;
-            // this.newName = this.text;
-            // console.log(this.newName);
+
             if (this.newName === '') alert('Nome mancante')
             else {
                 newContact.name = this.newName;
@@ -409,26 +409,12 @@ const app = new Vue({
         },
 
         /**********************************
-            al click sulla spunta del
-            messaggio SE il messaggio sele-
-            zionato come da mostrare è lo
-            stesso che sto analizzando
-            chiudo il layover
-            ALTRIMENTI SE
-            ho cliccato con uno diverso
-            nascondo il layover
-            in ogni caso imposto come
+            Imposto come
             messaggio da visualizzare quello
             che ho cliccato
         *********************************/
         changeShow(i) {
-            if (this.showMsg === i) {
-                this.showMsg = -1;
-            }
-            else {
-                if (this.showMsg !== i) this.showInfo = false;
-                this.showMsg = i;
-            }
+            this.showMsg = i;
         },
 
         /**********************************
@@ -448,7 +434,9 @@ const app = new Vue({
             posizione i dalla chat attiva
         *********************************/
         deleteMsg(i) {
+            //se il messaggio che sto eliminando è quello quotato, svuoto quotedMsg
             if (this.getMessages[i].message === this.quotedMsg.message) this.quotedMsg = null
+
             this.getMessages.splice(i, 1)
             this.showMsg = -1;
             this.msg = '';
@@ -555,14 +543,15 @@ const app = new Vue({
             contatto a indice i
         *********************************/
         deleteContact(i) {
-            console.log(this.defaultAvatar);
-            console.log(i);
+            // gestione array contenente gli indici dei contatti senza avatar
             for (let index = 0; index < this.defaultAvatar.length; index++) {
                 if (this.defaultAvatar[index] > i) this.defaultAvatar[index]--;
                 console.log(this.defaultAvatar[index]);
             }
-            console.log(this.defaultAvatar);
-            if (this.contacts[i].messages.includes(this.quotedMsg)) this.quotedMsg = null;
+
+            // se il contatto da eliminare è quello attivo svuoto il quotedMsg
+            if (i === this.active) this.quotedMsg = null;
+
             this.contacts.splice(i, 1);
             if (i === this.active) this.active = null;
             this.deletePopup = false;
@@ -597,12 +586,21 @@ const app = new Vue({
             this.newAvatar = '';
             this.editingProfile = false;
         },
+
+        /**********************************
+            funzione che data una stringa
+            ritorna la prima lettera
+        *********************************/
         getFirstLetter(name) {
             return name[0];
         },
+
+        /**********************************
+            gestisce il click sul tasto
+            rispondi al messagio
+        *********************************/
         answerHandler(i) {
             this.quotedMsg = this.getMessages[i];
-            this.changeShow(i);
         }
     },
 })
