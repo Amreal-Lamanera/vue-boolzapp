@@ -191,7 +191,7 @@
                             SIDEBAR - CONTACTS: contenitore dei contatti
                         -----------------------------------------------------------------------
                         -->
-                        <div class="contacts-container-wrapper">
+                        <div class="contacts-container-wrapper" ref="contactsRef">
                             <div class="d-flex flex-column">
 
                                 <!-- PER OGNI contact in contacts -->
@@ -223,7 +223,10 @@
                                         </span>
 
                                         <div class="layover">
-                                            <div @click.stop="deleteHandler(index)" class="delete-btn">X</div>
+                                            <div @click.stop="deleteHandler(index); scrollContactsHandler()"
+                                                class="delete-btn">
+                                                X
+                                            </div>
                                             <template v-if="deletePopup && deleteIndex === index">
                                                 <div class="delete-popup position-absolute">
                                                     <span class=" mb-1">Vuoi eliminare il contatto?</span>

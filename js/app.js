@@ -529,6 +529,13 @@ const app = new Vue({
             })
         },
 
+        scrollContactsHandler() {
+            this.$nextTick(function () {
+                const container = this.$refs.contactsRef;
+                container.scrollTop = container.scrollHeight;
+            })
+        },
+
         /**********************************
             gestisce il click sulla X per
             eliminare un contatto
