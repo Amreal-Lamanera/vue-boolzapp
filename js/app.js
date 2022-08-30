@@ -317,7 +317,7 @@ const app = new Vue({
                 newObj.quotedMsg = this.quotedMsg.message;
                 if (this.quotedMsg.status === 'sent') newObj.name = 'Tu';
                 else newObj.name = this.contacts[this.active].name;
-                console.log(newObj);
+                this.quotedMsg = null
             }
 
             messages.push(newObj);

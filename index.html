@@ -301,7 +301,10 @@
 
                                 <div class="contacts-card d-flex p-3 align-items-center pointer bg_grey">
 
-                                    <img class="profile bg-white me-3" :src="getAvatar()">
+                                    <div v-if="defaultAvatar.includes(active)" class="default-avatar me-2">
+                                        {{ getFirstLetter(contacts[active].name).toUpperCase()}}
+                                    </div>
+                                    <img v-else class="profile bg-white me-3" :src="getAvatar()">
 
                                     <div class="d-flex flex-column">
                                         <div class="msg_wrapper">
