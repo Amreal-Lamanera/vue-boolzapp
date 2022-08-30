@@ -259,7 +259,8 @@ const app = new Vue({
         defaultAvatar: new Array(),
         quotedMsg: null,
         helloArray,
-        howArray
+        howArray,
+        nextMessage: ''
     },
     /**********************************
         COMPUTED
@@ -344,6 +345,8 @@ const app = new Vue({
             }
 
             messages.push(newObj);
+            this.nextMessage = this.newMessage;
+            this.newMessage = '';
             this.randomAnswer();
             this.scrollHandler();
         },
@@ -359,15 +362,14 @@ const app = new Vue({
                 setTimeout(() => {
                     messages.push({
                         date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                        message: this.randomMsg(this.newMessage),
+                        message: this.randomMsg(this.nextMessage),
                         status: 'received'
                     }
                     );
                     this.write = 'Online';
-                    this.writing = false;
                     this.scrollHandler();
-                }, 2000); //2000
-            }, 3000) //3000
+                }, 1000); //2000
+            }, 2000) //3000
         },
 
         /**********************************
@@ -514,19 +516,27 @@ const app = new Vue({
                 const element = howAre[j];
                 if (msgUpper.includes(element)) {
                     if (answer === '') {
-                        this.newMessage = '';
+                        this.nextMessage = '';
+                        this.writing = false;
                         return this.howArray[howRandom];
                     } else {
-                        this.newMessage = 'come stai';
+                        this.nextMessage = element;
                         this.randomAnswer();
                         return answer;
                     }
                 }
             }
 
+            if (answer !== '') {
+                this.writing = false;
+                this.nextMessage = ''
+                return answer;
+            }
+
             const length = this.answers.length;
             const random = Math.floor(Math.random() * length);
-            this.newMessage = ''
+            this.nextMessage = ''
+            this.writing = false;
             return this.answers[random];
         },
 
