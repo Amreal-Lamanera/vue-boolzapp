@@ -529,6 +529,9 @@ const app = new Vue({
             })
         },
 
+        /**********************************
+            gestisce lo scroll deli contatti
+        *********************************/
         scrollContactsHandler() {
             this.$nextTick(function () {
                 const container = this.$refs.contactsRef;
