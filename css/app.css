@@ -356,11 +356,13 @@ main {
 
 .chat-card.received {
     align-self: flex-start;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .chat-card.sent {
     background-color: #d5f9ba;
     align-self: flex-end;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .chat-card .quote {
