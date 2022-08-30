@@ -208,6 +208,25 @@ const answers = [
     'Qui casca l’asino',
 ]
 
+/**********************************
+   array dei saluti casuali
+*********************************/
+const helloArray = [
+    'Ciao',
+    'Bella',
+    'Hey',
+    'Eilà',
+    'Loda il sole',
+    'Benvenuto Tarnished'
+]
+
+const howArray = [
+    'Tutto bene, grazie',
+    'Non molto bene...',
+    'Nella norma',
+    'Alla grande!'
+]
+
 const app = new Vue({
     el: '#app',
     /**********************************
@@ -238,7 +257,9 @@ const app = new Vue({
         editProfilePopup: false,
         editingProfile: false,
         defaultAvatar: new Array(),
-        quotedMsg: null
+        quotedMsg: null,
+        helloArray,
+        howArray
     },
     /**********************************
         COMPUTED
@@ -323,26 +344,30 @@ const app = new Vue({
             }
 
             messages.push(newObj);
+            this.randomAnswer();
+            this.scrollHandler();
+        },
 
+        // funzione che genera una risposta
+        randomAnswer() {
             // TODO: la simulazione di 'online' e 'sta scrivendo...' rimane buggata al cambio chat dopo l'invio del messaggio
+            const messages = this.contacts[this.active].messages;
             this.writing = true;
+            const another = false;
             setTimeout(() => {
                 this.write = 'Sta scrivendo...';
                 setTimeout(() => {
                     messages.push({
                         date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                        message: this.randomMsg(),
+                        message: this.randomMsg(this.newMessage),
                         status: 'received'
                     }
                     );
                     this.write = 'Online';
                     this.writing = false;
                     this.scrollHandler();
-                }, 2000);
-            }, 3000)
-
-            this.scrollHandler();
-            this.newMessage = ''
+                }, 2000); //2000
+            }, 3000) //3000
         },
 
         /**********************************
@@ -460,9 +485,48 @@ const app = new Vue({
             ritorna una stringa contenente
             una risposta casuale
         *********************************/
-        randomMsg() {
+        randomMsg(msg) {
+            const howAre = [
+                'COME STAI',
+                'COME VA',
+                'TUTTO BENE'
+            ];
+            const msgUpper = msg.toUpperCase();
+
+            const helloLength = this.helloArray.length;
+            const helloRandom = Math.floor(Math.random() * helloLength);
+
+            const howLength = this.howArray.length;
+            const howRandom = Math.floor(Math.random() * howLength);
+
+            let answer = '';
+
+            for (let i = 0; i < this.helloArray.length; i++) {
+                const upperElement = this.helloArray[i].toUpperCase();
+                // console.log('array', upperElement, 'messaggio', msg);
+                if (msgUpper.includes(upperElement)) {
+                    if (upperElement.includes('LODA IL SOLE')) return 'Puttana!'
+                    answer = this.helloArray[helloRandom];
+                }
+            }
+
+            for (let j = 0; j < howAre.length; j++) {
+                const element = howAre[j];
+                if (msgUpper.includes(element)) {
+                    if (answer === '') {
+                        this.newMessage = '';
+                        return this.howArray[howRandom];
+                    } else {
+                        this.newMessage = 'come stai';
+                        this.randomAnswer();
+                        return answer;
+                    }
+                }
+            }
+
             const length = this.answers.length;
             const random = Math.floor(Math.random() * length);
+            this.newMessage = ''
             return this.answers[random];
         },
 
