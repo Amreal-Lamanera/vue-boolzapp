@@ -289,7 +289,7 @@ main {
     max-width: 100%;
     background-color: #FFF;
     border-radius: 0.5rem;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem 2rem 1rem;
     overflow-wrap: break-word;
     position: relative;
     margin-top: 0.5rem;
@@ -364,6 +364,13 @@ main {
     align-self: flex-end;
 }
 
+.chat-card .quote {
+    padding: 0.5rem;
+    border-left: 5px solid blueviolet;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+
 .hour {
     position: absolute;
     right: 10%;
@@ -379,16 +386,46 @@ main {
     z-index: 99;
     box-shadow: 0 0 5px black;
     cursor: pointer;
+    font-size: 0.75rem;
 }
 
 .deleteOpt .info,
-.deleteOpt .delete {
-    padding: 2rem;
+.deleteOpt .delete,
+.deleteOpt .answer {
+    padding: 0.25rem 0.5rem;
 }
 
 .deleteOpt .info:hover,
-.deleteOpt .delete:hover {
+.deleteOpt .delete:hover,
+.deleteOpt .answer:hover {
     background-color: var(--grey);
+}
+
+.quote {
+    padding: 1rem;
+    background-color: var(--light-grey);
+    border-left: 5px solid blueviolet;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quote .quote-title {
+    display: block;
+    color: blueviolet;
+}
+
+.quote .quote-cancel {
+    color: blueviolet;
+    border: 2px solid blueviolet;
+    border-radius: 100%;
+    aspect-ratio: 1;
+    width: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .chat-input {

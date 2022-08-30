@@ -238,7 +238,7 @@ const app = new Vue({
         editProfilePopup: false,
         editingProfile: false,
         defaultAvatar: new Array(),
-        noBubble: new Array()
+        quotedMsg: null
     },
     /**********************************
         COMPUTED
@@ -296,6 +296,7 @@ const app = new Vue({
         *********************************/
         moveActive(index) {
             this.active = index;
+            this.quotedMsg = null;
         },
 
         /**********************************
@@ -306,12 +307,20 @@ const app = new Vue({
             this.newMessage = this.newMessage.trim();
             if (!this.newMessage || this.active === null) return
             const messages = this.contacts[this.active].messages;
-
-            messages.push({
+            let newObj = new Object();
+            newObj = {
                 date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                 message: this.newMessage,
                 status: 'sent'
-            });
+            }
+            if (this.quotedMsg != null) {
+                newObj.quotedMsg = this.quotedMsg.message;
+                if (this.quotedMsg.status === 'sent') newObj.name = 'Tu';
+                else newObj.name = this.contacts[this.active].name;
+                console.log(newObj);
+            }
+
+            messages.push(newObj);
 
             // TODO: la simulazione di 'online' e 'sta scrivendo...' rimane buggata al cambio chat dopo l'invio del messaggio
             this.writing = true;
@@ -439,6 +448,7 @@ const app = new Vue({
             posizione i dalla chat attiva
         *********************************/
         deleteMsg(i) {
+            if (this.getMessages[i].message === this.quotedMsg.message) this.quotedMsg = null
             this.getMessages.splice(i, 1)
             this.showMsg = -1;
             this.msg = '';
@@ -546,6 +556,7 @@ const app = new Vue({
             contatto a indice i
         *********************************/
         deleteContact(i) {
+            if (this.contacts[i].messages.includes(this.quotedMsg)) this.quotedMsg = null;
             this.contacts.splice(i, 1);
             if (i === this.active) this.active = null;
             this.deletePopup = false;
@@ -583,5 +594,9 @@ const app = new Vue({
         getFirstLetter(name) {
             return name[0];
         },
+        answerHandler(i) {
+            this.quotedMsg = this.getMessages[i];
+            this.changeShow(i);
+        }
     },
 })

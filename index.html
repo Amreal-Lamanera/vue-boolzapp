@@ -352,6 +352,16 @@
 
                             <!-- stampo la chat -->
                             <div class="chat-card" v-for="(message, index) in getMessages" :class="message.status">
+
+                                <!-- TODO: -->
+                                <div v-if="message.quotedMsg" class="quote">
+                                    <div>
+                                        <span class="quote-title">
+                                            {{ message.name }}
+                                        </span>
+                                        {{ message.quotedMsg }}
+                                    </div>
+                                </div>
                                 <span v-if="!showInfo || showMsg!==index" class="msg">
                                     {{ message.message }}
                                 </span>
@@ -371,8 +381,14 @@
                                 <template v-if="index === showMsg">
                                     <div class="deleteOpt">
                                         <div class="border-bottom border-1 info" @click.stop="invertInfo(index)">
-                                            Info Message</div>
-                                        <div class="delete" @click.stop="deleteMsg(index)">Delete message</div>
+                                            Info Message
+                                        </div>
+                                        <div class="border-bottom border-1 delete" @click.stop="deleteMsg(index)">
+                                            Delete message
+                                        </div>
+                                        <div class="answer" @click.stop="answerHandler(index)">
+                                            Rispondi
+                                        </div>
                                     </div>
                                     <div class="popup__bg" @click.stop="showMsg = -1"></div>
                                 </template>
@@ -382,6 +398,18 @@
                         </template>
 
 
+                    </div>
+
+                    <div v-if="quotedMsg" class="quote">
+                        <div>
+                            <span class="quote-title">
+                                {{ quotedMsg.status === 'sent'? 'Tu' : contacts[active].name }}
+                            </span>
+                            {{ quotedMsg.message }}
+                        </div>
+                        <div class="quote-cancel" @click="quotedMsg = null">
+                            X
+                        </div>
                     </div>
                     <!-- CHAT END -->
 
