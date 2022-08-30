@@ -507,7 +507,11 @@ const app = new Vue({
                 const upperElement = this.helloArray[i].toUpperCase();
                 // console.log('array', upperElement, 'messaggio', msg);
                 if (msgUpper.includes(upperElement)) {
-                    if (upperElement.includes('LODA IL SOLE')) return 'Puttana!'
+                    if (upperElement.includes('LODA IL SOLE')) {
+                        this.nextMessage = '';
+                        this.writing = false;
+                        return 'Puttana!'
+                    }
                     answer = this.helloArray[helloRandom];
                 }
             }
