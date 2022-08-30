@@ -58,8 +58,10 @@
                         <header class="me bg_grey">
                             <div class="d-flex justify-content-between align-items-center p-3">
                                 <div class="me__profile d-flex align-items-center">
-                                    <img src="img/IMG_9783.JPEG" alt="My profile pic" class="me-1 profile">
-                                    <span class="me__name">Francesco</span>
+                                    <img :src="myAvatar" alt="My profile pic" class="me-1 profile">
+                                    <span class="me__name">
+                                        {{ myName}}
+                                    </span>
                                 </div>
 
                                 <div class="me__buttons">
@@ -91,7 +93,47 @@
 
                                     </i>
 
-                                    <i class="fa-solid fa-ellipsis-vertical pointer c_grey"></i>
+                                    <i class="fa-solid fa-ellipsis-vertical pointer position-relative"
+                                        @click="editProfilePopup = true">
+
+                                        <template v-if="editProfilePopup">
+                                            <div
+                                                class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__right">
+                                                <span class=" mb-3">Vuoi modificare il tuo profilo?</span>
+                                                <div class="my__btn" @click.stop="editProfileHandler">
+                                                    Modifica</div>
+                                            </div>
+                                            <div class="popup__bg" @click.stop="editProfilePopup = false"></div>
+                                        </template>
+
+                                    </i>
+
+                                    <template v-if="editingProfile">
+                                        <div
+                                            class="pop-up bg_light-grey d-flex flex-column justify-content-center align-items-center">
+
+                                            <div class="input-container">
+                                                <span>
+                                                    Nuovo nome:
+                                                </span>
+                                                <input v-model="newName" class="me-xxl-3 me-0"
+                                                    @keyup.enter="editProfile" placeholder="Inserisci il nome...">
+                                                <span>
+                                                    Nuovo avatar:
+                                                </span>
+                                                <input v-model="newAvatar" class="mb-5" @keyup.enter="editProfile"
+                                                    placeholder="Inserisci un link...">
+                                            </div>
+
+                                            <div class="btn-container align-self-center d-flex">
+                                                <div class="me-3 my__btn" @click="editProfile()">
+                                                    Salva</div>
+                                                <div class="align-self-center my__btn" @click="editingProfile=false">
+                                                    Annulla</div>
+                                            </div>
+                                        </div>
+                                        <div class="popup__bg" @click="addingContact = false"></div>
+                                    </template>
                                 </div>
                             </div>
                         </header>

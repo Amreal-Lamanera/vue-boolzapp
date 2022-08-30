@@ -232,7 +232,11 @@ const app = new Vue({
         statusPopup: false,
         notificationsAlert: true,
         deletePopup: false,
-        deleteIndex: -1
+        deleteIndex: -1,
+        myAvatar: 'img/IMG_9783.JPEG',
+        myName: 'Francesco',
+        editProfilePopup: false,
+        editingProfile: false
     },
     /**********************************
         COMPUTED
@@ -299,18 +303,20 @@ const app = new Vue({
         addMessage() {
             this.newMessage = this.newMessage.trim();
             if (!this.newMessage || this.active === null) return
+            const messages = this.contacts[this.active].messages;
 
-            this.contacts[this.active].messages.push({
+            messages.push({
                 date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                 message: this.newMessage,
                 status: 'sent'
             });
 
+            // TODO: la simulazione di 'online' e 'sta scrivendo...' rimane buggata al cambio chat dopo l'invio del messaggio
             this.writing = true;
             setTimeout(() => {
                 this.write = 'Sta scrivendo...';
                 setTimeout(() => {
-                    this.contacts[this.active].messages.push({
+                    messages.push({
                         date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         message: this.randomMsg(),
                         status: 'received'
@@ -532,6 +538,28 @@ const app = new Vue({
             this.contacts.splice(i, 1);
             if (i === this.active) this.active = null;
             this.deletePopup = false;
+        },
+
+        editProfileHandler() {
+            this.editingProfile = true;
+        },
+
+        editProfile() {
+            const newName = this.newName.trim();
+            const newAvatar = this.newAvatar;
+            if (newName === '' && newAvatar === '') {
+                alert('Dati mancanti');
+            } else if (newAvatar === '') {
+                this.myName = newName;
+            } else if (newName = '') {
+                this.myAvatar = newAvatar;
+            } else {
+                this.myName = newName;
+                this.myAvatar = newAvatar;
+            }
+            this.newName = '';
+            this.newAvatar = '';
+            this.editingProfile = false;
         }
     },
 })

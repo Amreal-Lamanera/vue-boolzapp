@@ -95,6 +95,7 @@ body {
     left: 0;
     right: 0;
     z-index: 9;
+    /* background-color: #000; */
 }
 
 /*****************************
@@ -109,6 +110,11 @@ aside {
 
 nav {
     height: 100%;
+}
+
+nav header i {
+    width: 30px;
+    text-align: center;
 }
 
 header .me__buttons {
@@ -150,6 +156,12 @@ header .me__buttons {
 .main-popup.popup__middle {
     top: 120%;
     left: -100px;
+}
+
+.main-popup.popup__right {
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
 }
 
 .notifications {
