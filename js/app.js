@@ -548,7 +548,6 @@ const app = new Vue({
         deleteHandler(i) {
             this.deleteIndex = i;
             this.deletePopup = true;
-
         },
 
         /**********************************
@@ -556,6 +555,13 @@ const app = new Vue({
             contatto a indice i
         *********************************/
         deleteContact(i) {
+            console.log(this.defaultAvatar);
+            console.log(i);
+            for (let index = 0; index < this.defaultAvatar.length; index++) {
+                if (this.defaultAvatar[index] > i) this.defaultAvatar[index]--;
+                console.log(this.defaultAvatar[index]);
+            }
+            console.log(this.defaultAvatar);
             if (this.contacts[i].messages.includes(this.quotedMsg)) this.quotedMsg = null;
             this.contacts.splice(i, 1);
             if (i === this.active) this.active = null;
