@@ -537,6 +537,12 @@ const app = new Vue({
                 return answer;
             }
 
+            if (msgUpper.includes('CHI SEI')) {
+                this.writing = false;
+                this.nextMessage = ''
+                return 'Goku non lo sai...';
+            }
+
             const length = this.answers.length;
             const random = Math.floor(Math.random() * length);
             this.nextMessage = ''
