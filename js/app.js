@@ -353,7 +353,7 @@ const app = new Vue({
             // TODO: la simulazione di 'online' e 'sta scrivendo...' rimane buggata al cambio chat dopo l'invio del messaggio
             const messages = this.contacts[this.active].messages;
             this.writing = true;
-            const another = false;
+
             setTimeout(() => {
                 this.write = 'Sta scrivendo...';
                 setTimeout(() => {
