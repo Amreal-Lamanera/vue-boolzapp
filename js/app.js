@@ -236,7 +236,8 @@ const app = new Vue({
         myAvatar: 'img/IMG_9783.JPEG',
         myName: 'Francesco',
         editProfilePopup: false,
-        editingProfile: false
+        editingProfile: false,
+        defaultAvatar: new Array()
     },
     /**********************************
         COMPUTED
@@ -385,16 +386,14 @@ const app = new Vue({
         addContact() {
             const newContact = new Object;
             // this.newName = this.text;
-            console.log(this.newName);
+            // console.log(this.newName);
             if (this.newName === '') alert('Nome mancante')
             else {
                 newContact.name = this.newName;
-                if (this.newAvatar === '') alert('Avatar assente')
-                else {
-                    newContact.avatar = this.newAvatar;
-                    newContact.messages = new Array;
-                    this.contacts.push(newContact);
-                }
+                if (this.newAvatar === '') this.defaultAvatar.push(this.contacts.length);
+                newContact.avatar = this.newAvatar;
+                newContact.messages = new Array;
+                this.contacts.push(newContact);
             }
             this.addingContact = false;
         },
@@ -579,6 +578,9 @@ const app = new Vue({
             this.newName = '';
             this.newAvatar = '';
             this.editingProfile = false;
+        },
+        getFirstLetter(name) {
+            return name[0];
         }
     },
 })

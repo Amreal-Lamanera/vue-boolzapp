@@ -30,10 +30,21 @@ body {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.745);
 }
 
-.profile {
+.profile,
+.default-avatar {
     width: 3rem;
     aspect-ratio: 1;
     border-radius: 100%;
+}
+
+.default-avatar {
+    color: var(--green);
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 .font_small {

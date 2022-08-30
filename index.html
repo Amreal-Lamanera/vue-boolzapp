@@ -203,7 +203,11 @@
                                         :class="index===active ? 'bg_grey' : ''"
                                         @click="moveActive(index); scrollHandler();">
 
-                                        <img class="profile bg-white me-2" :src=`img/${contact.avatar}`>
+                                        <div v-if="defaultAvatar.includes(index)" class="default-avatar me-2">
+                                            {{ getFirstLetter(contact.name).toUpperCase()}}
+                                        </div>
+
+                                        <img v-else class="profile bg-white me-2" :src=`img/${contact.avatar}`>
 
                                         <div class="msg_wrapper">
                                             <span class="d-block">
