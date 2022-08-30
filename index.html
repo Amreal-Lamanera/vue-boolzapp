@@ -351,8 +351,7 @@
                         <template v-else>
 
                             <!-- stampo la chat -->
-                            <div class="chat-card" v-for="(message, index) in getMessages"
-                                :class="handleChatMsgLayout(index)">
+                            <div class="chat-card" v-for="(message, index) in getMessages" :class="message.status">
                                 <span v-if="!showInfo || showMsg!==index" class="msg">
                                     {{ message.message }}
                                 </span>
@@ -378,7 +377,7 @@
                                     <div class="popup__bg" @click.stop="showMsg = -1"></div>
                                 </template>
 
-                                <div :class="noBubble.includes(index) ? 'd-none' : ''" class="bubble"></div>
+                                <div class="bubble"></div>
                             </div>
                         </template>
 
