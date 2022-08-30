@@ -246,6 +246,7 @@ const app = new Vue({
             this.smartphoneChat = true;
             return this.contacts[this.active].messages;
         },
+
         /**********************************
             ritorna l'array dei messaggi
             contenente l'input text
@@ -350,6 +351,7 @@ const app = new Vue({
             // console.log('click lente');
             this.$refs.typeBox.focus();
         },
+
         /**********************************
             funzione che gestisce il blur
             dell'input
@@ -360,6 +362,7 @@ const app = new Vue({
                 this.search = false
             }, 200)
         },
+
         /**********************************
             funzione che gestisce il click
             sulla freccia dell'input
@@ -483,6 +486,7 @@ const app = new Vue({
         isNew() {
             return !this.getMessages.length;
         },
+
         /**********************************
             gestisce il click su
             "crea nuovo"
@@ -491,8 +495,8 @@ const app = new Vue({
             this.addContactPopup = false;
             this.addingContact = true;
             this.newName = '';
-
         },
+
         /**********************************
             gestisce il click su
             "aggiungi ai contatti"
@@ -501,6 +505,7 @@ const app = new Vue({
             this.addingContact = true;
             this.newName = this.text;
         },
+
         /**********************************
             gestisce il click sulla freccia
             indietro in mobile
@@ -509,20 +514,23 @@ const app = new Vue({
             this.smartphoneChat = false;
             this.active = null;
         },
+
         scrollHandler() {
             this.$nextTick(function () {
                 const container = this.$refs.containerRef;
                 container.scrollTop = container.scrollHeight;
             })
         },
+
         deleteHandler(i) {
             this.deleteIndex = i;
             this.deletePopup = true;
 
         },
+
         deleteContact(i) {
             this.contacts.splice(i, 1);
-            this.active = null;
+            if (i === this.active) this.active = null;
             this.deletePopup = false;
         }
     },

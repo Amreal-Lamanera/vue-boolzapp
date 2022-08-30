@@ -6,6 +6,7 @@
     --grey: #c2c2c2;
     --light-grey: #f1f1f1;
     --green: #009688;
+    --light-blue: #8edafc;
 }
 
 body {
@@ -66,7 +67,7 @@ body {
 }
 
 .my__btn {
-    background-color: #8edafc;
+    background-color: var(--light-blue);
     padding: 0.25rem 0.5rem;
     border-radius: 2rem;
     box-shadow: 0 0 2px #003853;
@@ -152,7 +153,7 @@ header .me__buttons {
 }
 
 .notifications {
-    background-color: #8edafc;
+    background-color: var(--light-blue);
 }
 
 .contacts-container-wrapper {
@@ -190,11 +191,11 @@ header .me__buttons {
 
 .delete-btn {
     font-weight: bold;
-    color: var(--grey);
+    color: #505050;
 }
 
 .not__bell {
-    color: #8edafc;
+    color: var(--light-blue);
 }
 
 .notifications .font_small {
