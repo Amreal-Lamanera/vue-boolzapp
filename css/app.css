@@ -296,7 +296,6 @@ main {
 }
 
 .chat-card:first-of-type .bubble {
-    /* background-color: blue; */
     display: block;
 }
 
