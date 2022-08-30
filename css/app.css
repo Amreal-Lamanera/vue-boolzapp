@@ -290,29 +290,28 @@ main {
     background-color: #FFF;
     border-radius: 0.5rem;
     padding: 2rem 1rem;
-    margin-bottom: 1rem;
     overflow-wrap: break-word;
     position: relative;
 }
 
-.point {
+.bubble {
     width: 0;
     height: 0;
     position: absolute;
 }
 
-.sent .point {
-    border-left: 50px solid #d5f9ba;
-    border-top: 1.5rem solid transparent;
-    right: -2rem;
-    bottom: 0;
+.sent .bubble {
+    border-left: 1.5rem solid #d5f9ba;
+    border-bottom: 1rem solid transparent;
+    right: -1rem;
+    top: 0;
 }
 
-.received .point {
-    border-right: 50px solid #FFF;
-    border-top: 1.5rem solid transparent;
-    left: -2rem;
-    bottom: 0;
+.received .bubble {
+    border-right: 1.5rem solid #FFF;
+    border-bottom: 1rem solid transparent;
+    left: -1rem;
+    top: 0;
 }
 
 .chat-card .msg {

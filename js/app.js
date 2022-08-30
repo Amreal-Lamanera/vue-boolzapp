@@ -237,7 +237,8 @@ const app = new Vue({
         myName: 'Francesco',
         editProfilePopup: false,
         editingProfile: false,
-        defaultAvatar: new Array()
+        defaultAvatar: new Array(),
+        noBubble: new Array()
     },
     /**********************************
         COMPUTED
@@ -581,6 +582,18 @@ const app = new Vue({
         },
         getFirstLetter(name) {
             return name[0];
+        },
+        handleChatMsgLayout(i) {
+            if (i === 0) this.noBubble = new Array();
+            const actualMsgStat = this.getMessages[i].status;
+            if (i === this.getMessages.length - 1) return actualMsgStat + ' mb-3';
+            const afterMsgStat = this.getMessages[i + 1].status;
+            if (actualMsgStat !== afterMsgStat) {
+                return actualMsgStat + ' mb-3';
+            } else {
+                this.noBubble.push(i + 1);
+                return actualMsgStat + ' mb-1';
+            }
         }
     },
 })
