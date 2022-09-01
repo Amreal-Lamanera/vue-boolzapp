@@ -256,7 +256,6 @@ const app = new Vue({
         myName: 'Francesco',
         editProfilePopup: false,
         editingProfile: false,
-        defaultAvatar: new Array(),
         quotedMsg: null,
         helloArray,
         howArray,
@@ -427,7 +426,6 @@ const app = new Vue({
             if (this.newName === '') alert('Nome mancante')
             else {
                 newContact.name = this.newName;
-                if (this.newAvatar === '') this.defaultAvatar.push(this.contacts.length);
                 newContact.avatar = this.newAvatar;
                 newContact.messages = new Array;
                 this.contacts.push(newContact);
@@ -556,7 +554,7 @@ const app = new Vue({
             della chat attiva
         *********************************/
         getAvatar() {
-            return 'img/' + this.contacts[this.active].avatar;
+            return this.contacts[this.active].avatar;
         },
 
         /**********************************
@@ -637,17 +635,14 @@ const app = new Vue({
             contatto a indice i
         *********************************/
         deleteContact(i) {
-            // gestione array contenente gli indici dei contatti senza avatar
-            for (let index = 0; index < this.defaultAvatar.length; index++) {
-                if (this.defaultAvatar[index] > i) this.defaultAvatar[index]--;
-                console.log(this.defaultAvatar[index]);
-            }
-
             // se il contatto da eliminare è quello attivo svuoto il quotedMsg
             if (i === this.active) this.quotedMsg = null;
+            // se il contatto da eliminare è quello attivo rimuovo l'indice attivo
+            if (i === this.active) this.active = null;
+            // se il contatto da eliminare è minore di quello attivo, decremento l'attivo di 1
+            if (i < this.active) this.active--;
 
             this.contacts.splice(i, 1);
-            if (i === this.active) this.active = null;
             this.deletePopup = false;
         },
 
