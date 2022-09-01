@@ -28,6 +28,9 @@
         <!-- MANIFEST -->
         <link rel="manifest" href="./site.webmanifest">
 
+        <!-- AUDIO RECORDER -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/recorderjs/0.1.0/recorder.min.js"></script>
+
 
         <title>Boolzapp</title>
 
@@ -425,11 +428,12 @@
                     ------------------------------------------------------------------------
                     -->
                     <div class="chat-input" v-if="active !== null">
-                        <div class="d-flex align-items-center c_dark-grey">
+                        <div class="d-flex align-items-center">
                             <i class="fa-regular fa-face-smile"></i>
                             <input type="text" class="font_small border-0 p-3" placeholder="Scrivi un messaggio"
                                 v-model="newMessage" @keyup.enter="addMessage" @focus.prevent>
-                            <i v-if="newMessage === ''" class="fa fa-microphone" aria-hidden="true"></i>
+                            <i v-if="newMessage === ''" class="fa fa-microphone pointer" aria-hidden="true"
+                                @click="onStartListening" ref="microphone"></i>
                             <i v-else class="fa-solid fa-paper-plane pointer" aria-hidden="true"
                                 @click="addMessage"></i>
                         </div>

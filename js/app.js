@@ -1,4 +1,5 @@
 dayjs.extend(window.dayjs_plugin_customParseFormat);
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 /**********************************
    array dei contatti
@@ -259,7 +260,9 @@ const app = new Vue({
         quotedMsg: null,
         helloArray,
         howArray,
-        nextMessage: ''
+        nextMessage: '',
+        // mediaRecorder: new MediaRecorder(mediaStreamObj)
+        recognition: new SpeechRecognition()
     },
     /**********************************
         COMPUTED
@@ -690,6 +693,19 @@ const app = new Vue({
         *********************************/
         answerHandler(i) {
             this.quotedMsg = this.getMessages[i];
+        },
+        onStartListening() {
+
+            this.recognition.addEventListener('result', this.onResult);
+            console.log(this.recognition);
+            this.$refs.microphone.style.color = 'red';
+            this.recognition.start();
+        },
+        onResult(e) {
+            const testo = e.results[0][0].transcript;
+            this.newMessage = testo;
+            this.addMessage()
+            this.$refs.microphone.style.color = 'black';
         }
     },
 })
