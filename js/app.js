@@ -761,7 +761,6 @@ const app = new Vue({
                 this.$refs.microphone.style.color = 'black';
                 const myAudio = await this.recorder.stop();
                 this.addAudioMsg(myAudio.audioUrl);
-                console.log(myAudio.audioUrl);
                 this.recorder = null;
                 this.record = false;
             }
@@ -784,8 +783,6 @@ const app = new Vue({
             }
 
             messages.push(newObj);
-            console.log(newObj.messageUrl);
-            console.log(messages);
             this.randomAnswer();
             this.scrollHandler();
         }
