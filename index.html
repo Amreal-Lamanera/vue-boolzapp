@@ -362,7 +362,6 @@
                             <!-- stampo la chat -->
                             <div class="chat-card" v-for="(message, index) in getMessages" :class="message.status">
 
-                                <!-- TODO: -->
                                 <div v-if="message.quotedMsg" class="quote">
                                     <div>
                                         <span class="quote-title">
@@ -371,9 +370,14 @@
                                         {{ message.quotedMsg }}
                                     </div>
                                 </div>
-                                <span v-if="!showInfo || showMsg!==index" class="msg">
+
+                                <span v-if="(!showInfo || showMsg!==index) && !message.messageUrl" class="msg">
                                     {{ message.message }}
                                 </span>
+
+                                <audio v-else-if="!showInfo || showMsg!==index" controls :src="message.messageUrl">
+                                </audio>
+
                                 <span v-else class="msg">
                                     {{ message.date }}
                                 </span>
@@ -433,7 +437,7 @@
                             <input type="text" class="font_small border-0 p-3" placeholder="Scrivi un messaggio"
                                 v-model="newMessage" @keyup.enter="addMessage" @focus.prevent>
                             <i v-if="newMessage === ''" class="fa fa-microphone pointer" aria-hidden="true"
-                                @click="onStartListening" ref="microphone"></i>
+                                @click="recordHandler" ref="microphone"></i>
                             <i v-else class="fa-solid fa-paper-plane pointer" aria-hidden="true"
                                 @click="addMessage"></i>
                         </div>
@@ -446,7 +450,6 @@
             </div>
 
         </div>
-
 
         <!-- Bootstrap Bundle with Popper -->
         <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'

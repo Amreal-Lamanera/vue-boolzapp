@@ -262,7 +262,9 @@ const app = new Vue({
         howArray,
         nextMessage: '',
         // mediaRecorder: new MediaRecorder(mediaStreamObj)
-        recognition: new SpeechRecognition()
+        recognition: new SpeechRecognition(),
+        record: false,
+        recorder: null
     },
     /**********************************
         COMPUTED
@@ -702,10 +704,90 @@ const app = new Vue({
             this.recognition.start();
         },
         onResult(e) {
-            const testo = e.results[0][0].transcript;
+            let testo = e.results[0][0].transcript;
+            // const testoArray = testo.split(' ');
+            // testoArray.forEach(element => {
+            //     if (element === 'punto') element = '.'
+            // });
+            // testo = testoArray.join(' ')
             this.newMessage = testo;
             this.addMessage()
             this.$refs.microphone.style.color = 'black';
+        },
+        recordAudio() {
+            return new Promise(resolve => {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(stream => {
+                        const mediaRecorder = new MediaRecorder(stream);
+                        const audioChunks = [];
+
+                        mediaRecorder.addEventListener("dataavailable", event => {
+                            audioChunks.push(event.data);
+                        });
+
+                        const start = () => {
+                            mediaRecorder.start();
+                        };
+
+                        const stop = () => {
+                            return new Promise(resolve => {
+                                mediaRecorder.addEventListener("stop", () => {
+                                    const audioBlob = new Blob(audioChunks);
+                                    const audioUrl = URL.createObjectURL(audioBlob);
+                                    const audio = new Audio(audioUrl);
+                                    const play = () => {
+                                        audio.play();
+                                    };
+
+                                    resolve({ audioBlob, audioUrl, play });
+                                });
+
+                                mediaRecorder.stop();
+                            });
+                        };
+
+                        resolve({ start, stop });
+                    });
+            });
+        },
+        async recordHandler() {
+            if (!this.record) {
+                this.$refs.microphone.style.color = 'red';
+                this.recorder = await this.recordAudio();
+                this.recorder.start();
+                this.record = true;
+            }
+            else {
+                this.$refs.microphone.style.color = 'black';
+                const myAudio = await this.recorder.stop();
+                this.addAudioMsg(myAudio.audioUrl);
+                console.log(myAudio.audioUrl);
+                this.recorder = null;
+                this.record = false;
+            }
+        },
+        addAudioMsg(src) {
+            const messages = this.contacts[this.active].messages;
+            let newObj = new Object();
+            newObj = {
+                date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                messageUrl: src,
+                status: 'sent'
+            }
+
+            // se sto rispondeno ad un messaggio aggiungo delle proprietà all'oggetto
+            if (this.quotedMsg != null) {
+                newObj.quotedMsg = this.quotedMsg.message;
+                if (this.quotedMsg.status === 'sent') newObj.name = 'Tu';
+                else newObj.name = this.contacts[this.active].name;
+                this.quotedMsg = null;
+            }
+
+            messages.push(newObj);
+            console.log(newObj.messageUrl);
+            console.log(messages);
+            this.randomAnswer();
+            this.scrollHandler();
         }
     },
 })
