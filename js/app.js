@@ -262,7 +262,7 @@ const app = new Vue({
         howArray,
         nextMessage: '',
         // mediaRecorder: new MediaRecorder(mediaStreamObj),
-        recognition: new SpeechRecognition(),
+        // recognition: new SpeechRecognition(),
         record: false,
         recorder: null
     },
