@@ -83,16 +83,18 @@
 
 .my__btn {
     background-color: var(--light-blue);
-    padding: 1px 2px;
+    padding: 0.25rem 0.5rem;
     border-radius: 2rem;
     box-shadow: 0 0 2px #003853;
-    font-size: 0.5rem;
     cursor: pointer;
+    font-size: 0.75rem;
 }
 
 .main-popup .my__btn {
     color: white;
     background-color: #000;
+    padding: 1px 2px;
+    font-size: 0.5rem;
 }
 
 .my__btn:hover {
@@ -231,7 +233,21 @@ header .me__buttons {
 
 .search_btn,
 .search-chat input {
-    border: 1px solid var(--grey);
+    border: none
+}
+
+.search_btn {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.search-chat input {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+:focus-visible {
+    outline: none;
 }
 
 .msg_wrapper {
@@ -504,12 +520,12 @@ main {
     color: var(--dark-color);
 }
 
-.dark .main-popup .my__btn {
+.dark .my__btn {
     background-color: var(--light-grey);
     color: #000;
 }
 
-.dark .main-popup .my__btn:hover {
+.dark .my__btn:hover {
     box-shadow: 0 0 5px #FFF;
 }
 
@@ -517,20 +533,13 @@ main {
     background: var(--dark) !important;
 }
 
+.dark input {
+    color: #FFF;
+}
+
 .dark .search_btn,
 .dark .search-chat input {
-    border: none !important;
     background: var(--light-dark) !important;
-}
-
-.dark .search_btn {
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
-}
-
-.dark .search-chat input {
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
 }
 
 .dark nav .contacts-card:hover {
