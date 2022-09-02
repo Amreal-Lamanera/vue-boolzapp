@@ -1,5 +1,5 @@
 dayjs.extend(window.dayjs_plugin_customParseFormat);
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+// const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 /**********************************
    array dei contatti
@@ -706,17 +706,17 @@ const app = new Vue({
             registrazione audio per
             convertirlo in testo
         *********************************/
-        // onStartListening() {
-        //     this.recognition.addEventListener('result', this.onResult);
-        //     this.$refs.microphoneTxt.style.color = 'red';
-        //     try {
-        //         this.recognition.start();
-        //     } catch {
-        //         //TODO: chiedere spiegazioni
-        //         this.recognition.stop();
-        //         this.$refs.microphoneTxt.style.color = 'black';
-        //     }
-        // },
+        onStartListening() {
+            this.recognition.addEventListener('result', this.onResult);
+            this.$refs.microphoneTxt.style.color = 'red';
+            try {
+                this.recognition.start();
+            } catch {
+                //TODO: chiedere spiegazioni
+                this.recognition.stop();
+                this.$refs.microphoneTxt.style.color = 'black';
+            }
+        },
 
         /**********************************
             funzione che gestisce l'audio
@@ -793,7 +793,7 @@ const app = new Vue({
         },
 
         /**********************************
-            funzione asincrona che aggiunge
+            funzione che aggiunge
             un messaggio vocale alla chat
         *********************************/
         addAudioMsg(src) {
