@@ -261,7 +261,7 @@ const app = new Vue({
         helloArray,
         howArray,
         nextMessage: '',
-        // mediaRecorder: new MediaRecorder(mediaStreamObj)
+        // mediaRecorder: new MediaRecorder(mediaStreamObj),
         recognition: new SpeechRecognition(),
         record: false,
         recorder: null
@@ -699,24 +699,42 @@ const app = new Vue({
         answerHandler(i) {
             this.quotedMsg = this.getMessages[i];
         },
-        onStartListening() {
 
+        // TODO: FUTURE FEATURES
+        /**********************************
+            funzione che inizia la
+            registrazione audio per
+            convertirlo in testo
+        *********************************/
+        onStartListening() {
             this.recognition.addEventListener('result', this.onResult);
-            console.log(this.recognition);
-            this.$refs.microphone.style.color = 'red';
-            this.recognition.start();
+            this.$refs.microphoneTxt.style.color = 'red';
+            try {
+                this.recognition.start();
+            } catch {
+                //TODO: chiedere spiegazioni
+                this.recognition.stop();
+                this.$refs.microphoneTxt.style.color = 'black';
+            }
         },
+
+        /**********************************
+            funzione che gestisce l'audio
+            registrato e lo converte in
+            messaggio di testo
+        *********************************/
         onResult(e) {
+            console.log(e);
             let testo = e.results[0][0].transcript;
-            // const testoArray = testo.split(' ');
-            // testoArray.forEach(element => {
-            //     if (element === 'punto') element = '.'
-            // });
-            // testo = testoArray.join(' ')
             this.newMessage = testo;
             this.addMessage()
-            this.$refs.microphone.style.color = 'black';
+            this.$refs.microphoneTxt.style.color = 'black';
         },
+
+        /**********************************
+            funzione che registra un
+            messaggio audio e lo gestisce
+        *********************************/
         recordAudio() {
             return new Promise(resolve => {
                 navigator.mediaDevices.getUserMedia({ audio: true })
@@ -753,6 +771,11 @@ const app = new Vue({
                     });
             });
         },
+
+        /**********************************
+            funzione asincrona che gestisce
+            la registrazione
+        *********************************/
         async recordHandler() {
             if (!this.record) {
                 this.$refs.microphone.style.color = 'red';
@@ -768,6 +791,11 @@ const app = new Vue({
                 this.record = false;
             }
         },
+
+        /**********************************
+            funzione asincrona che aggiunge
+            un messaggio vocale alla chat
+        *********************************/
         addAudioMsg(src) {
             const messages = this.contacts[this.active].messages;
             let newObj = new Object();
