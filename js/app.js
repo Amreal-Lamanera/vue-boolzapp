@@ -265,8 +265,8 @@ const app = new Vue({
         // recognition: new SpeechRecognition(),
         record: false,
         recorder: null,
-        // prefDark: window.matchMedia("(prefers-color-scheme: dark)").matches
-        prefDark: true
+        prefDark: window.matchMedia("(prefers-color-scheme: dark)").matches
+        // prefDark: true
     },
     /**********************************
         COMPUTED

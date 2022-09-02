@@ -18,7 +18,7 @@
 }
 
 .dark {
-    background: var(--dark);
+    background: linear-gradient(#111b21 0, #111b21 100%);
 }
 
 .light,
@@ -580,7 +580,7 @@ main {
     background-color: var(--light-dark);
 }
 
-.dark .chat-card.received .bubble {
+.dark .received .bubble {
     border-right-color: var(--light-dark);
 }
 
@@ -589,7 +589,7 @@ main {
     background-color: #005c4b;
 }
 
-.dark .chat-card.sent .bubble {
+.dark .sent .bubble {
     border-left-color: #005c4b;
 }
 
