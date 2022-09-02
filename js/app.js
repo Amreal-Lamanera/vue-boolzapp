@@ -342,7 +342,7 @@ const app = new Vue({
 
             // se sto rispondeno ad un messaggio aggiungo delle proprietà all'oggetto
             if (this.quotedMsg != null) {
-                if (this.quotedMsg.messageUrl) newObj.quotedMsg = 'Audio'
+                if (this.quotedMsg.messageUrl) newObj.quotedMsg = 'Audio \u{1F3B5}'
                 else newObj.quotedMsg = this.quotedMsg.message;
                 if (this.quotedMsg.status === 'sent') newObj.name = 'Tu';
                 else newObj.name = this.contacts[this.active].name;
@@ -777,7 +777,7 @@ const app = new Vue({
 
             // se sto rispondeno ad un messaggio aggiungo delle proprietà all'oggetto
             if (this.quotedMsg != null) {
-                if (this.quotedMsg.messageUrl) newObj.quotedMsg = 'Audio'
+                if (this.quotedMsg.messageUrl) newObj.quotedMsg = 'Audio \u{1F3B5}'
                 else newObj.quotedMsg = this.quotedMsg.message;
                 if (this.quotedMsg.status === 'sent') newObj.name = 'Tu';
                 else newObj.name = this.contacts[this.active].name;
