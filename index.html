@@ -226,7 +226,7 @@
                                         </span>
 
                                         <div class="layover">
-                                            <div @click.stop="deleteHandler(index); scrollContactsHandler()"
+                                            <div @click.stop="deleteHandler(index); scrollContactsHandler(index)"
                                                 class="delete-btn">
                                                 X
                                             </div>
@@ -387,7 +387,7 @@
                                     </span>
                                 </div>
 
-                                <div class="layover" @click.stop="changeShow(index); scrollHandler()">
+                                <div class="layover" @click.stop="changeShow(index); scrollHandler(index)">
                                     <i class="fa-solid fa-angle-down pointer"></i>
                                 </div>
 

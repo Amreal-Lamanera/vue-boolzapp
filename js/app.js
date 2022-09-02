@@ -610,7 +610,8 @@ const app = new Vue({
         /**********************************
             gestisce lo scroll della chat
         *********************************/
-        scrollHandler() {
+        scrollHandler(i) {
+            if (i !== this.getMessages.length - 1 && i !== undefined) return;
             this.$nextTick(function () {
                 const container = this.$refs.containerRef;
                 container.scrollTop = container.scrollHeight;
@@ -620,7 +621,8 @@ const app = new Vue({
         /**********************************
             gestisce lo scroll deli contatti
         *********************************/
-        scrollContactsHandler() {
+        scrollContactsHandler(i) {
+            if (i !== this.getContactsFiltered.length - 1 && i !== undefined) return;
             this.$nextTick(function () {
                 const container = this.$refs.contactsRef;
                 container.scrollTop = container.scrollHeight;
