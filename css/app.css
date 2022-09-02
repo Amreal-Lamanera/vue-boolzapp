@@ -586,6 +586,14 @@ main {
     color: var(--dark-color);
 }
 
+.dark .deleteOpt {
+    background-color: var(--light-dark);
+}
+
+.dark .deleteOpt>*:hover {
+    background-color: var(--dark-color);
+}
+
 .dark .chat-input {
     background-color: var(--light-dark);
     color: var(--dark-color);
