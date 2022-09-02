@@ -17,12 +17,12 @@
     background: linear-gradient(#009688 10%, #d3dbda 0%);
 }
 
-.dark {
+.darkMode {
     background: linear-gradient(#111b21 0, #111b21 100%);
 }
 
 .light,
-.dark {
+.darkMode {
     background-repeat: no-repeat;
     height: 100vh;
     padding: 20px;
@@ -31,7 +31,7 @@
 @media (min-width: 992px) {
 
     .light,
-    .dark {
+    .darkMode {
         padding: 2.5vh 5vh;
     }
 }
@@ -507,114 +507,114 @@ main {
     DARK MODE
 *****************************/
 
-.dark header {
+.darkMode header {
     background: var(--light-dark) !important;
     color: var(--dark-color);
 }
 
-.dark .notifications {
+.darkMode .notifications {
     color: var(--dark-color);
     background-color: #003853;
 }
 
-.dark .not__bell {
+.darkMode .not__bell {
     background-color: var(--dark) !important;
 }
 
-.dark .main-container {
+.darkMode .main-container {
     background: var(--dark);
     color: #FFF;
 }
 
-.dark .main-popup {
+.darkMode .main-popup {
     background-color: var(--dark);
     color: var(--dark-color);
 }
 
-.dark .my__btn {
+.darkMode .my__btn {
     background-color: var(--light-grey);
     color: #000;
 }
 
-.dark .my__btn:hover {
+.darkMode .my__btn:hover {
     box-shadow: 0 0 5px #FFF;
 }
 
-.dark .search-chat {
+.darkMode .search-chat {
     background: var(--dark) !important;
 }
 
-.dark input {
+.darkMode input {
     color: #FFF;
 }
 
-.dark .search_btn,
-.dark .search-chat input {
+.darkMode .search_btn,
+.darkMode .search-chat input {
     background: var(--light-dark) !important;
 }
 
-.dark nav .contacts-card:hover {
+.darkMode nav .contacts-card:hover {
     background-color: var(--mid-dark) !important;
 }
 
-.dark .contacts-card.bg_grey {
+.darkMode .contacts-card.bg_grey {
     background-color: var(--light-dark);
 }
 
-.dark main {
+.darkMode main {
     background-image: url('../img/wall.jpg');
     background-size: cover;
 }
 
-.dark .def-img {
+.darkMode .def-img {
     background-color: #222e35;
     color: var(--dark-color);
 }
 
-.dark .chat-container #beta {
+.darkMode .chat-container #beta {
     background-color: #364147;
 }
 
-.dark .chat-card.received,
-.dark .chat-card.received .layover {
+.darkMode .chat-card.received,
+.darkMode .chat-card.received .layover {
     background-color: var(--light-dark);
 }
 
-.dark .received .bubble {
+.darkMode .received .bubble {
     border-right-color: var(--light-dark);
 }
 
-.dark .chat-card.sent,
-.dark .chat-card.sent .layover {
+.darkMode .chat-card.sent,
+.darkMode .chat-card.sent .layover {
     background-color: #005c4b;
 }
 
-.dark .sent .bubble {
+.darkMode .sent .bubble {
     border-left-color: #005c4b;
 }
 
-.dark .chat-card .layover {
+.darkMode .chat-card .layover {
     color: var(--dark-color);
 }
 
-.dark .quote {
+.darkMode .quote {
     background-color: var(--light-dark);
 }
 
-.dark .deleteOpt {
+.darkMode .deleteOpt {
     background-color: var(--light-dark);
 }
 
-.dark .deleteOpt>*:hover {
+.darkMode .deleteOpt>*:hover {
     background-color: var(--dark-color);
 }
 
-.dark .chat-input {
+.darkMode .chat-input {
     background-color: var(--light-dark);
     color: var(--dark-color);
 }
 
-.dark .chat-input input {
+.darkMode .chat-input input {
     background-color: #2a3942;
 }
 
