@@ -715,7 +715,8 @@ const app = new Vue({
             } catch {
                 //TODO: chiedere spiegazioni
                 this.recognition.stop();
-                this.$refs.microphoneTxt.style.color = 'black';
+                if (this.prefDark) this.$refs.microphoneTxt.style.color = '#8696a0';
+                else this.$refs.microphoneTxt.style.color = 'black';
             }
         },
 
@@ -785,13 +786,32 @@ const app = new Vue({
                 this.record = true;
             }
             else {
-                this.$refs.microphone.style.color = 'black';
+                if (this.prefDark) this.$refs.microphone.style.color = '#8696a0';
+                else this.$refs.microphone.style.color = 'black';
                 const myAudio = await this.recorder.stop();
                 this.addAudioMsg(myAudio.audioUrl);
                 this.recorder = null;
                 this.record = false;
+                // console.log(myAudio.audioUrl);
             }
         },
+
+        playHandler(i) {
+            return new Promise(resolve => {
+                const audio = new Audio(this.contacts[this.active].messages[i].messageUrl);
+                audio.preload = 'metadata'
+                const play = () => {
+                    audio.play()
+                };
+                resolve({ play })
+            })
+        },
+
+        async play(i) {
+            this.recorder = await this.playHandler(i);
+            this.recorder.play();
+        },
+
 
         /**********************************
             funzione che aggiunge
@@ -803,7 +823,7 @@ const app = new Vue({
             newObj = {
                 date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                 messageUrl: src,
-                status: 'sent'
+                status: 'sent',
             }
 
             // se sto rispondeno ad un messaggio aggiungo delle proprietà all'oggetto
