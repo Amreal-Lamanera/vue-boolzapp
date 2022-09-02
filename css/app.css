@@ -7,9 +7,13 @@
     --light-grey: #f1f1f1;
     --green: #009688;
     --light-blue: #8edafc;
+    --light-dark: #202c33;
+    --dark: #111b21;
+    --mid-dark: #18252d;
+    --dark-color: #8696a0;
 }
 
-body {
+#app {
     background: linear-gradient(#009688 10%, #d3dbda 0%);
     background-repeat: no-repeat;
     height: 100vh;
@@ -17,7 +21,7 @@ body {
 }
 
 @media (min-width: 992px) {
-    body {
+    #app {
         padding: 2.5vh 5vh;
     }
 }
@@ -79,10 +83,10 @@ body {
 
 .my__btn {
     background-color: var(--light-blue);
-    padding: 0.25rem 0.5rem;
+    padding: 1px 2px;
     border-radius: 2rem;
     box-shadow: 0 0 2px #003853;
-    font-size: 0.75rem;
+    font-size: 0.5rem;
     cursor: pointer;
 }
 
@@ -149,12 +153,13 @@ header .me__buttons {
     line-height: 1rem;
     z-index: 99;
     border-radius: 1rem;
-    font-size: 0.75rem;
-    width: 200px;
+    font-size: 0.5rem;
+    width: 150px;
     text-align: center;
     box-shadow: 0 0 1px black;
     cursor: auto;
     font-weight: normal;
+    padding: 0.25rem;
 }
 
 .main-popup.popup__left {
@@ -465,6 +470,120 @@ main {
         width: 50vw;
         height: 50vh;
     }
+}
+
+/*****************************
+    DARK MODE
+*****************************/
+
+#app.dark {
+    background: var(--dark);
+}
+
+.dark header {
+    background: var(--light-dark) !important;
+    color: var(--dark-color);
+}
+
+.dark .notifications {
+    color: var(--dark-color);
+    background-color: #003853;
+}
+
+.dark .not__bell {
+    background-color: var(--dark) !important;
+}
+
+.dark .main-container {
+    background: var(--dark);
+    color: #FFF;
+}
+
+.dark .main-popup {
+    background-color: var(--dark);
+    color: var(--dark-color);
+}
+
+.dark .main-popup .my__btn {
+    background-color: var(--light-grey);
+    color: #000;
+}
+
+.dark .main-popup .my__btn:hover {
+    box-shadow: 0 0 5px #FFF;
+}
+
+.dark .search-chat {
+    background: var(--dark) !important;
+}
+
+.dark .search_btn,
+.dark .search-chat input {
+    border: none !important;
+    background: var(--light-dark) !important;
+}
+
+.dark .search_btn {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.dark .search-chat input {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.dark nav .contacts-card:hover {
+    background-color: var(--mid-dark) !important;
+}
+
+.dark .contacts-card.bg_grey {
+    background-color: var(--light-dark);
+}
+
+.dark main {
+    background-image: url('../img/wall.jpg');
+    background-size: cover;
+}
+
+.dark .def-img {
+    background-color: #222e35;
+    color: var(--dark-color);
+}
+
+.dark .chat-container #beta {
+    background-color: #364147;
+}
+
+.dark .chat-card.received,
+.dark .chat-card.received .layover {
+    background-color: var(--light-dark);
+}
+
+.dark .chat-card.received .bubble {
+    border-right-color: var(--light-dark);
+}
+
+.dark .chat-card.sent,
+.dark .chat-card.sent .layover {
+    background-color: #005c4b;
+}
+
+.dark .chat-card.sent .bubble {
+    border-left-color: #005c4b;
+}
+
+.dark .chat-card .layover {
+    color: var(--dark-color);
+}
+
+.dark .chat-input {
+    background-color: var(--light-dark);
+    color: var(--dark-color);
+}
+
+.dark .chat-input input {
+    background-color: #2a3942;
 }
 
 /*****************************

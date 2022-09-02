@@ -36,9 +36,9 @@
 
     </head>
 
-    <body class="">
+    <body>
 
-        <div id="app">
+        <div id="app" :class="prefDark? 'dark' : ''">
             <!--
             ---------------------------------------------------------------------------
                 DIV CONTENENTE TUTTA L'APPLICAZIONE
@@ -75,7 +75,7 @@
 
                                         <template v-if="statusPopup">
                                             <div
-                                                class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__left">
+                                                class="main-popup d-flex align-items-center justify-content-center flex-column position-absolute popup__left">
                                                 <span>Sei online</span>
                                             </div>
                                             <div class="popup__bg" @click.stop="statusPopup = false"></div>
@@ -89,8 +89,8 @@
 
                                         <template v-if="addContactPopup">
                                             <div
-                                                class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__middle">
-                                                <span class=" mb-3">Vuoi aggiungere un nuovo contatto?</span>
+                                                class="main-popup d-flex align-items-center justify-content-center flex-column position-absolute popup__middle">
+                                                <span class=" mb-1">Vuoi aggiungere un nuovo contatto?</span>
                                                 <div class="my__btn" @click.stop="addContactHandler">
                                                     Crea Nuovo</div>
                                             </div>
@@ -105,10 +105,16 @@
 
                                         <template v-if="editProfilePopup">
                                             <div
-                                                class="main-popup d-flex p-3 align-items-center justify-content-center flex-column position-absolute popup__right">
-                                                <span class=" mb-3">Vuoi modificare il tuo profilo?</span>
-                                                <div class="my__btn" @click.stop="editProfileHandler">
+                                                class="main-popup d-flex align-items-center justify-content-center flex-column position-absolute popup__right">
+                                                <span class=" mb-1">Vuoi modificare il tuo profilo?</span>
+                                                <div class="my__btn mb-1" @click.stop="editProfileHandler">
                                                     Modifica</div>
+
+                                                <span class=" mb-1">Dark mod: {{ prefDark? 'abilitata' : 'disabilitata'
+                                                    }}</span>
+                                                <div class="my__btn mb-1" @click.stop="prefDark = !prefDark">
+                                                    {{ prefDark? 'disabilita' : 'abilita' }}
+                                                </div>
                                             </div>
                                             <div class="popup__bg" @click.stop="editProfilePopup = false"></div>
                                         </template>
@@ -154,9 +160,9 @@
                         -->
                         <div class="notifications d-md-flex p-3 align-items-center d-none" v-if="notificationsAlert">
 
-                            <div
-                                class="not__bell profile bg-white d-flex align-items-center justify-content-center me-2 pointer">
-                                <i class="fa-solid fa-bell-slash"></i>
+                            <div class="not__bell profile bg-white d-flex align-items-center justify-content-center me-2 pointer"
+                                @click="notificationsAlert = false">
+                                <i class=" fa-solid fa-bell-slash"></i>
                             </div>
 
                             <div class="not__desc">
@@ -173,7 +179,7 @@
                             SIDEBAR - SEARCH: input di ricerca contatto
                         -----------------------------------------------------------------------
                         -->
-                        <div class="search-chat bg_light-grey p-1 d-flex">
+                        <div class="search-chat bg_light-grey p-2 d-flex">
                             <div v-if="!search && !text" class="search_btn bg-white px-4 py-1 pointer"
                                 @click="controlSearch">
                                 <i class="fa-solid fa-magnifying-glass c_grey"></i>
@@ -330,11 +336,11 @@
                                 </div>
                             </div>
 
-                            <div class="me__buttons c_grey pe-3">
+                            <!-- <div class="me__buttons c_grey pe-3">
                                 <i class="fa-solid fa-magnifying-glass pointer"></i>
                                 <i class="fa-solid fa-paperclip px-2 pointer"></i>
                                 <i class="fa-solid fa-ellipsis-vertical pointer"></i>
-                            </div>
+                            </div> -->
                         </div>
                     </header>
                     <!-- HEADER END -->
@@ -350,7 +356,7 @@
                         <!-- SE non ho contatti attivi -->
                         <div v-if="active === null"
                             class="def-img d-flex align-items-center justify-content-center flex-column">
-                            <img src="img/def.jpg" alt="">
+                            <img :src="getDefImg()" alt="">
                             <h1 id="main-title">Lamazapp Web Desktop <b id="beta" class="text-uppercase">beta</b></h1>
                             <span class="font_small c_dark-grey">Invia e ricevi messaggi senza mantenere il telefono
                                 connesso a Internet.</span>

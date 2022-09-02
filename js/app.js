@@ -264,7 +264,8 @@ const app = new Vue({
         // mediaRecorder: new MediaRecorder(mediaStreamObj),
         // recognition: new SpeechRecognition(),
         record: false,
-        recorder: null
+        recorder: null,
+        prefDark: window.matchMedia("(prefers-color-scheme: dark)").matches
     },
     /**********************************
         COMPUTED
@@ -817,6 +818,11 @@ const app = new Vue({
             messages.push(newObj);
             this.randomAnswer();
             this.scrollHandler();
+        },
+
+        getDefImg() {
+            if (this.prefDark) return 'img/def-dark.png'
+            return 'img/def.jpg'
         }
-    },
+    }
 })
