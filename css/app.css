@@ -13,15 +13,25 @@
     --dark-color: #8696a0;
 }
 
-#app {
+.light {
     background: linear-gradient(#009688 10%, #d3dbda 0%);
+}
+
+.dark {
+    background: var(--dark);
+}
+
+.light,
+.dark {
     background-repeat: no-repeat;
     height: 100vh;
     padding: 20px;
 }
 
 @media (min-width: 992px) {
-    #app {
+
+    .light,
+    .dark {
         padding: 2.5vh 5vh;
     }
 }
@@ -496,10 +506,6 @@ main {
 /*****************************
     DARK MODE
 *****************************/
-
-#app.dark {
-    background: var(--dark);
-}
 
 .dark header {
     background: var(--light-dark) !important;
