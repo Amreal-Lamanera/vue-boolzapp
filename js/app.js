@@ -342,7 +342,8 @@ const app = new Vue({
 
             // se sto rispondeno ad un messaggio aggiungo delle proprietà all'oggetto
             if (this.quotedMsg != null) {
-                newObj.quotedMsg = this.quotedMsg.message;
+                if (this.quotedMsg.messageUrl) newObj.quotedMsg = 'Audio'
+                else newObj.quotedMsg = this.quotedMsg.message;
                 if (this.quotedMsg.status === 'sent') newObj.name = 'Tu';
                 else newObj.name = this.contacts[this.active].name;
                 this.quotedMsg = null;
@@ -734,12 +735,12 @@ const app = new Vue({
                                 mediaRecorder.addEventListener("stop", () => {
                                     const audioBlob = new Blob(audioChunks);
                                     const audioUrl = URL.createObjectURL(audioBlob);
-                                    const audio = new Audio(audioUrl);
-                                    const play = () => {
-                                        audio.play();
-                                    };
+                                    // const audio = new Audio(audioUrl);
+                                    // const play = () => {
+                                    // audio.play();
+                                    // };
 
-                                    resolve({ audioBlob, audioUrl, play });
+                                    resolve({ audioBlob, audioUrl/*, play*/ });
                                 });
 
                                 mediaRecorder.stop();
@@ -776,7 +777,8 @@ const app = new Vue({
 
             // se sto rispondeno ad un messaggio aggiungo delle proprietà all'oggetto
             if (this.quotedMsg != null) {
-                newObj.quotedMsg = this.quotedMsg.message;
+                if (this.quotedMsg.messageUrl) newObj.quotedMsg = 'Audio'
+                else newObj.quotedMsg = this.quotedMsg.message;
                 if (this.quotedMsg.status === 'sent') newObj.name = 'Tu';
                 else newObj.name = this.contacts[this.active].name;
                 this.quotedMsg = null;
