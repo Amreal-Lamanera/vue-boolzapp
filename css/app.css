@@ -591,6 +591,10 @@ main {
     color: var(--dark-color);
 }
 
+.dark .quote {
+    background-color: var(--light-dark);
+}
+
 .dark .deleteOpt {
     background-color: var(--light-dark);
 }

@@ -467,7 +467,7 @@ const app = new Vue({
         *********************************/
         deleteMsg(i) {
             //se il messaggio che sto eliminando è quello quotato, svuoto quotedMsg
-            if (this.getMessages[i].message === this.quotedMsg.message) this.quotedMsg = null
+            if (this.quotedMsg && this.getMessages[i].message === this.quotedMsg.message) this.quotedMsg = null
 
             this.getMessages.splice(i, 1)
             this.showMsg = -1;
@@ -792,25 +792,24 @@ const app = new Vue({
                 this.addAudioMsg(myAudio.audioUrl);
                 this.recorder = null;
                 this.record = false;
-                // console.log(myAudio.audioUrl);
             }
         },
 
-        playHandler(i) {
-            return new Promise(resolve => {
-                const audio = new Audio(this.contacts[this.active].messages[i].messageUrl);
-                audio.preload = 'metadata'
-                const play = () => {
-                    audio.play()
-                };
-                resolve({ play })
-            })
-        },
+        // playHandler(i) {
+        //     return new Promise(resolve => {
+        //         const audio = new Audio(this.contacts[this.active].messages[i].messageUrl);
+        //         audio.preload = 'metadata'
+        //         const play = () => {
+        //             audio.play()
+        //         };
+        //         resolve({ play })
+        //     })
+        // },
 
-        async play(i) {
-            this.recorder = await this.playHandler(i);
-            this.recorder.play();
-        },
+        // async play(i) {
+        //     this.recorder = await this.playHandler(i);
+        //     this.recorder.play();
+        // },
 
 
         /**********************************

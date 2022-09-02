@@ -382,15 +382,8 @@
                                 </span>
 
                                 <!-- :src="message.messageUrl" -->
-                                <div v-else-if="!showInfo || showMsg!==index" controls
-                                    class="d-flex justify-content-center align-items-center">
-                                    <div class="d-flex flex-column me-2">
-                                        <span>Messaggio</span>
-                                        <span>audio</span>
-                                    </div>
-                                    <i class="fa fa-play pointer me-3" aria-hidden="true" @click="play(index)"
-                                        ref="playBtn"></i>
-                                </div>
+                                <audio v-else-if="!showInfo || showMsg!==index" controls :src="message.messageUrl">
+                                </audio>
 
                                 <span v-else class="msg">
                                     {{ message.date }}
