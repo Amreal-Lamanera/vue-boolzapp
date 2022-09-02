@@ -706,30 +706,30 @@ const app = new Vue({
             registrazione audio per
             convertirlo in testo
         *********************************/
-        onStartListening() {
-            this.recognition.addEventListener('result', this.onResult);
-            this.$refs.microphoneTxt.style.color = 'red';
-            try {
-                this.recognition.start();
-            } catch {
-                //TODO: chiedere spiegazioni
-                this.recognition.stop();
-                this.$refs.microphoneTxt.style.color = 'black';
-            }
-        },
+        // onStartListening() {
+        //     this.recognition.addEventListener('result', this.onResult);
+        //     this.$refs.microphoneTxt.style.color = 'red';
+        //     try {
+        //         this.recognition.start();
+        //     } catch {
+        //         //TODO: chiedere spiegazioni
+        //         this.recognition.stop();
+        //         this.$refs.microphoneTxt.style.color = 'black';
+        //     }
+        // },
 
         /**********************************
             funzione che gestisce l'audio
             registrato e lo converte in
             messaggio di testo
         *********************************/
-        onResult(e) {
-            console.log(e);
-            let testo = e.results[0][0].transcript;
-            this.newMessage = testo;
-            this.addMessage()
-            this.$refs.microphoneTxt.style.color = 'black';
-        },
+        // onResult(e) {
+        //     console.log(e);
+        //     let testo = e.results[0][0].transcript;
+        //     this.newMessage = testo;
+        //     this.addMessage()
+        //     this.$refs.microphoneTxt.style.color = 'black';
+        // },
 
         /**********************************
             funzione che registra un
