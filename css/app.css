@@ -569,7 +569,7 @@ main {
 }
 
 .darkMode main {
-    background-image: url('../img/wall.jpg');
+    background-image: url('../img/wall.jpg') !important;
     background-size: cover;
 }
 
