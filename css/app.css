@@ -514,6 +514,10 @@ main {
     DARK MODE
 *****************************/
 
+.darkMode aside {
+    border-right: none;
+}
+
 .darkMode header {
     background: var(--light-dark) !important;
     color: var(--dark-color);
